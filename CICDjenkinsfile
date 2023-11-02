@@ -78,13 +78,13 @@ pipeline {
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
-		/*
+
 		stage('Veracode Security Scan') {
 			steps {
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Veracode", "applicationName": "VeraDemo10", "securityToolId": "0248c4acc3e53510a653f92f0501316e"}'
 			}
 		}
-		*/
+
 		stage('Register Package') {
 			steps {
 				snDevOpsPackage(
