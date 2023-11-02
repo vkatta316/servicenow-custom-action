@@ -112,18 +112,6 @@ pipeline {
 			}
 		}
 
-		stage('Get Change') {
-			steps {
-			    changeRequestNumber = snDevOpsGetChangeNumber(changeDetails: "{"stage_name":"Change"}")
-			}
-		}
-
-		stage('Update Change') {
-			steps {
-			    snDevOpsUpdateChangeInfo(changeRequestDetails: """{"state":"4","reason":"Location changed", "description": "Canceling change as Location changed from ${currStageName} Step by ${env.BUILD_NUMBER}", "comments": "Update of change request through Update API from ${currStageName} Step by ${env.BUILD_NUMBER}", "work_notes": "Update of change request through Update API from ${currStageName} Step by ${env.BUILD_NUMBER}"}""", changeRequestNumber: """${changeRequestNumber}""")
-			}
-		}
-
 		stage('Deploy') {
 			steps {
 				echo "Deploying the change..."
