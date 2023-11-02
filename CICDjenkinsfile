@@ -125,30 +125,9 @@ pipeline {
 					"end_date": "2022-01-08 11:59:59" // This is the planned end date.
 				}
 			    }''')
-			    echo 'Getting change number from the same stage as change creation...'
-			    changeRequestNumber = snDevOpsGetChangeNumber(changeDetails: """{ "pipeline_name": "Rama scripted folder/fScripted pipeline", "build_number": "${BUILD_NUMBER}", "stage_name": "Change", "branch_name": "main"}""")
-			    echo 'Updating change number from the same stage as change creation...'
-			    snDevOpsUpdateChangeInfo(changeRequestDetails: """{ "short_description": "Test description", "priority": "1", "start_date": "2021-02-05 08:00:00", "end_date": "2022-04-05 08:00:00", "justification": "test justification", "description": "test description", "cab_required": true, "comments": "This update for work notes is from jenkins file", "work_notes": "test work notes", "assignment_group": "a715cd759f2002002920bde8132e7018"}""", changeRequestNumber: """${changeRequestNumber}""")
-			}
-		}
-/*
-		stage('Get Change') {
-			steps {
-			    sleep 100
-			    echo 'Getting change number from a different stage as change creation...'
-			    changeRequestNumber = snDevOpsGetChangeNumber changeDetails: '{ "pipeline_name": "Rama scripted folder/fScripted pipeline", "build_number": "${BUILD_NUMBER}", "stage_name": "Change", "branch_name": "main"}'
-			    echo "changeRequestNumber in 'Get Change' is => ${changeRequestNumber}"
 			}
 		}
 
-		stage('Update Change') {
-			steps {
-			    echo "changeRequestNumber in 'Update Change' is => ${changeRequestNumber}"
-			    echo 'Updating change number from a different stage as change creation...'
-			    snDevOpsUpdateChangeInfo(changeRequestDetails: '{"state":"3", "close_code":"successful", "close_notes":"close_notes updated in Update Change stage"}', changeRequestNumber: '${changeRequestNumber}')
-			}
-		}
-*/
 		stage('Deploy') {
 			steps {
 				echo "Deploying the change..."
