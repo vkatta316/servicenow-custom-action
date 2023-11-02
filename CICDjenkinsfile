@@ -126,9 +126,9 @@ pipeline {
 				}
 			    }''')
 			    echo 'Getting change number from the same stage as change creation...'
-			    changeRequestNumber = snDevOpsGetChangeNumber(changeDetails: """{"build_number":"${BUILD_NUMBER}","pipeline_name":"Rama scripted folder/fScripted pipeline","stage_name":"Change"}""")
+			    changeRequestNumber = snDevOpsGetChangeNumber changeDetails: '{ "pipeline_name": "Rama scripted folder/fScripted pipeline", "build_number": "${BUILD_NUMBER}", "stage_name": "Change", "branch_name": "main"}'
 			    echo 'Updating change number from the same stage as change creation...'
-			    snDevOpsUpdateChangeInfo(changeRequestDetails: """{"description": "'description' updated in 'Change' stage", "comments": "'comments' updated in 'Change' stage", "work_notes": "'work_notes' updated in 'Change' state"}""", changeRequestNumber: """${changeRequestNumber}""")
+			    snDevOpsUpdateChangeInfo changeRequestDetails: '{ "short_description": "Test description", "priority": "1", "start_date": "2021-02-05 08:00:00", "end_date": "2022-04-05 08:00:00", "justification": "test justification", "description": "test description", "cab_required": true, "comments": "This update for work notes is from jenkins file", "work_notes": "test work notes", "assignment_group": "a715cd759f2002002920bde8132e7018"}', changeRequestNumber: '${changeRequestNumber}'
 			}
 		}
 
@@ -136,7 +136,7 @@ pipeline {
 			steps {
 			    sleep 100
 			    echo 'Getting change number from a different stage as change creation...'
-			    changeRequestNumber = snDevOpsGetChangeNumber(changeDetails: """{"build_number":"${BUILD_NUMBER}","pipeline_name":"Rama scripted folder/fScripted pipeline","stage_name":"Change"}""")
+			    changeRequestNumber = snDevOpsGetChangeNumber changeDetails: '{ "pipeline_name": "Rama scripted folder/fScripted pipeline", "build_number": "${BUILD_NUMBER}", "stage_name": "Change", "branch_name": "main"}'
 			    echo "changeRequestNumber in 'Get Change' is => ${changeRequestNumber}"
 			}
 		}
@@ -145,7 +145,7 @@ pipeline {
 			steps {
 			    echo "changeRequestNumber in 'Update Change' is => ${changeRequestNumber}"
 			    echo 'Updating change number from a different stage as change creation...'
-			    snDevOpsUpdateChangeInfo(changeRequestDetails: """{"state":"3","close_code":"successful", "close_notes":"closing change from a different stage as change creation", "description": "Canceling change as Location changed from ${currStageName} Step by ${env.BUILD_NUMBER}", "comments": "Update of change request through Update API from ${currStageName} Step by ${env.BUILD_NUMBER}", "work_notes": "Update of change request through Update API from ${currStageName} Step by ${env.BUILD_NUMBER}"}""", changeRequestNumber: """${changeRequestNumber}""")
+			    snDevOpsUpdateChangeInfo changeRequestDetails: '{"state":"3", "close_code":"successful", "close_notes":"'close_notes' updated in 'Update Change' stage"}', changeRequestNumber: '${changeRequestNumber}'
 			}
 		}
 
