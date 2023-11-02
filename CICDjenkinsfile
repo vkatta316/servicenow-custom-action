@@ -145,7 +145,7 @@ pipeline {
 			steps {
 			    echo "changeRequestNumber in 'Update Change' is => ${changeRequestNumber}"
 			    echo 'Updating change number from a different stage as change creation...'
-			    snDevOpsUpdateChangeInfo(changeRequestDetails: '{"state":"3", "close_code":"successful", "close_notes":"close_notes updated in 'Update Change' stage"}', changeRequestNumber: '${changeRequestNumber}')
+			    snDevOpsUpdateChangeInfo(changeRequestDetails: '{"state":"3", "close_code":"successful", "close_notes":"close_notes updated in Update Change stage"}', changeRequestNumber: '${changeRequestNumber}')
 			}
 		}
 
