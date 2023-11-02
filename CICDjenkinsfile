@@ -3,6 +3,7 @@ def artifactname = "app-devops-artifact-cicd.jar"
 def version = "1.${BUILD_NUMBER}"
 def semanticVersion = "1.${BUILD_NUMBER}.0"
 def repoName = "2giridharj/ServiceNow-DevOps-Change-Sample" // Ensure after forking update the repoName accrodingly.
+def changeRequestNumber = null
 
 pipeline {
 	agent any
@@ -108,6 +109,18 @@ pipeline {
 					"end_date": "2022-01-08 11:59:59" // This is the planned end date.
 				}
 			    }''')
+			}
+		}
+
+		stage('Get Change') {
+			steps {
+			    changeRequestNumber = snDevOpsGetChangeNumber(changeDetails: """{"stage_name":"Change"}""")
+			}
+		}
+
+		stage('Update Change') {
+			steps {
+			    snDevOpsUpdateChangeInfo(changeRequestDetails: """{"state":"4","reason":"Location changed", "description": "Canceling change as Location changed from ${currStageName} Step by ${env.BUILD_NUMBER}", "comments": "Update of change request through Update API from ${currStageName} Step by ${env.BUILD_NUMBER}", "work_notes": "Update of change request through Update API from ${currStageName} Step by ${env.BUILD_NUMBER}"}""", changeRequestNumber: """${changeRequestNumber}""")
 			}
 		}
 
