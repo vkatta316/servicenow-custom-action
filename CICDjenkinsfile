@@ -114,7 +114,7 @@ pipeline {
 
 		stage('Get Change') {
 			steps {
-			    changeRequestNumber = snDevOpsGetChangeNumber(changeDetails: """{"stage_name":"Change"}""")
+			    changeRequestNumber = snDevOpsGetChangeNumber(changeDetails: "{"stage_name":"Change"}")
 			}
 		}
 
