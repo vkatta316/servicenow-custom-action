@@ -78,11 +78,13 @@ pipeline {
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
+		/*
 		stage('Veracode Security Scan') {
 			steps {
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Veracode", "applicationName": "VeraDemo10", "securityToolId": "0248c4acc3e53510a653f92f0501316e"}'
 			}
 		}
+		*/
 		stage('Register Package') {
 			steps {
 				snDevOpsPackage(
@@ -123,6 +125,27 @@ pipeline {
 					"end_date": "2022-01-08 11:59:59" // This is the planned end date.
 				}
 			    }''')
+			    echo 'Getting change number from the same stage as change creation...'
+			    changeRequestNumber = snDevOpsGetChangeNumber(changeDetails: """{"build_number":"${BUILD_NUMBER}","pipeline_name":"Rama scripted folder/fScripted pipeline","stage_name":"Change"}""")
+			    echo 'Updating change number from the same stage as change creation...'
+			    snDevOpsUpdateChangeInfo(changeRequestDetails: """{"description": "'description' updated in 'Change' stage", "comments": "'comments' updated in 'Change' stage", "work_notes": "'work_notes' updated in 'Change' state"}""", changeRequestNumber: """${changeRequestNumber}""")
+			}
+		}
+
+		stage('Get Change') {
+			steps {
+			    sleep 100
+			    echo 'Getting change number from a different stage as change creation...'
+			    changeRequestNumber = snDevOpsGetChangeNumber(changeDetails: """{"build_number":"${BUILD_NUMBER}","pipeline_name":"Rama scripted folder/fScripted pipeline","stage_name":"Change"}""")
+			    echo "changeRequestNumber in 'Get Change' is => ${changeRequestNumber}"
+			}
+		}
+
+		stage('Update Change') {
+			steps {
+			    echo "changeRequestNumber in 'Update Change' is => ${changeRequestNumber}"
+			    echo 'Updating change number from a different stage as change creation...'
+			    snDevOpsUpdateChangeInfo(changeRequestDetails: """{"state":"3","close_code":"successful", "close_notes":"closing change from a different stage as change creation", "description": "Canceling change as Location changed from ${currStageName} Step by ${env.BUILD_NUMBER}", "comments": "Update of change request through Update API from ${currStageName} Step by ${env.BUILD_NUMBER}", "work_notes": "Update of change request through Update API from ${currStageName} Step by ${env.BUILD_NUMBER}"}""", changeRequestNumber: """${changeRequestNumber}""")
 			}
 		}
 
