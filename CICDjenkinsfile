@@ -121,7 +121,8 @@ pipeline {
 					"comments": "This is a sample pipeline script to be added in your change step",
 					"work_notes": "Update this to work_notes",
 					"start_date": "2022-01-05 11:59:59", //This is the planned start date.
-					"end_date": "2022-01-08 11:59:59" // This is the planned end date.
+					"end_date": "2022-01-08 11:59:59", // This is the planned end date.
+					"chg_model": {"name": "devops"}
 				}
 			    }''')
 			}
