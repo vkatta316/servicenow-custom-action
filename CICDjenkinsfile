@@ -56,7 +56,6 @@ pipeline {
 
 		stage('Sonar Scan') {
 			steps {
-				sh 'mvn sonar:sonar -Pcoverage'
 				sonarSummaries()
 			}
 		}
@@ -139,6 +138,7 @@ pipeline {
 def sonarSummaries() {
 	withSonarQubeEnv(installationName: 'ramasonarcloud'){
 		sh 'mvn clean verify sonar:sonar \
+		    -Pcoverage \
 		    -Dsonar.login=1926d793f92181dd0ac406335d4d4bea392a3023 \
 		    -Dsonar.host.url=https://sonarcloud.io \
 		    -Dsonar.organization=pramaraju96 \
