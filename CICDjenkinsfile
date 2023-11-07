@@ -9,7 +9,7 @@ pipeline {
 	agent any
 	
 	tools {
-		maven 'Maven'
+		maven 'rama01Maven'
 	}
 
 	environment {
