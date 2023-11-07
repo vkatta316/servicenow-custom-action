@@ -27,7 +27,7 @@
 
 	<profile>
 	  <id>coverage</id>
-	
+	</profile>	
 	<!-- Configure Maven Surefire Plugin for test execution -->
 	<build>
 		<plugins>
