@@ -13,7 +13,6 @@ pipeline {
 	}
 
 	environment {
-		SCANNER_HOME = tool 'ramasonarcloud'
 		VERACODE_APPLICATION_NAME = 'ServiceNow DevOps App#1' //Ensure you update the correct Application name
 		VERACODE_SCANNER_NAME = 'Veracode'
 	} 
