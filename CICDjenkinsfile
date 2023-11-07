@@ -2,7 +2,7 @@ def packageName = "app-devops-package-cicd.war"
 def artifactname = "app-devops-artifact-cicd.jar"
 def version = "1.${BUILD_NUMBER}"
 def semanticVersion = "1.${BUILD_NUMBER}.0"
-def repoName = "2giridharj/ServiceNow-DevOps-Change-Sample" // Ensure after forking update the repoName accrodingly.
+def repoName = "pramaraju96/ServiceNow-DevOps-Change-Sample" // Ensure after forking update the repoName accrodingly.
 def changeRequestNumber = null
 
 pipeline {
@@ -60,7 +60,7 @@ pipeline {
 				sonarSummaries()
 			}
 		}
-
+/*
 		stage('CheckmarxOne Security Scan') {
 			steps {
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx One", "projectName": "DemoProject", "projectId": "75acb348-c054-4ab3-807d-e17e92a923ab", "securityToolId": "fd0a44e0c3293510a653f92f050131c6"}'
@@ -84,7 +84,7 @@ pipeline {
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Veracode", "applicationName": "VeraDemo10", "securityToolId": "0248c4acc3e53510a653f92f0501316e"}'
 			}
 		}
-
+*/
 		stage('Register Package') {
 			steps {
 				snDevOpsPackage(
@@ -142,6 +142,6 @@ def sonarSummaries() {
 		    -Dsonar.login=1926d793f92181dd0ac406335d4d4bea392a3023 \
 		    -Dsonar.host.url=https://sonarcloud.io \
 		    -Dsonar.organization=pramaraju96 \
-		    -Dsonar.projectKey=pramaraju96_DevOps-Test'
+		    -Dsonar.projectKey=pramaraju96_ServiceNow-DevOps-Change-Sample'
     }
 }
