@@ -25,9 +25,6 @@
 		</dependency>
 	</dependencies>
 
-	<profile>
-	  <id>coverage</id>
-	</profile>	
 	<!-- Configure Maven Surefire Plugin for test execution -->
 	<build>
 		<plugins>
@@ -76,4 +73,12 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<!-- Define profiles here -->
+	<profiles>
+		<profile>
+			<id>coverage</id>
+			<!-- Add profile configuration here if needed -->
+		</profile>
+	</profiles>
 </project>
