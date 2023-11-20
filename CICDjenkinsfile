@@ -122,7 +122,7 @@ pipeline {
 					"work_notes": "Update this to work_notes",
 					"start_date": "2022-01-05 11:59:59", //This is the planned start date.
 					"end_date": "2022-01-08 11:59:59", // This is the planned end date.
-					"type": "normal"
+					"type": "emergency"
 				}
 			    }''')
 			}
@@ -140,7 +140,7 @@ def sonarSummaries() {
 	withSonarQubeEnv(installationName: 'ramasonarcloud'){
 		sh 'mvn clean verify sonar:sonar \
 		    -Pcoverage \
-		    -Dsonar.login=1926d793f92181dd0ac406335d4d4bea392a3023 \
+		    -Dsonar.token=1926d793f92181dd0ac406335d4d4bea392a3023 \
 		    -Dsonar.host.url=https://sonarcloud.io \
 		    -Dsonar.organization=pramaraju96 \
 		    -Dsonar.projectKey=pramaraju96_ServiceNow-DevOps-Change-Sample'
