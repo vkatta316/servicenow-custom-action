@@ -122,7 +122,8 @@ pipeline {
 					//"work_notes": "Update this to work_notes",
 					//"start_date": "2022-01-05 11:59:59", //This is the planned start date.
 					//"end_date": "2022-01-08 11:59:59", // This is the planned end date.
-					"type": "standard"
+					"type": "standard",
+					"standard_change_template": "508e02ec47410200e90d87e8dee49058"
 				}
 			    }''')
 			}
