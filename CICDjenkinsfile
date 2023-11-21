@@ -89,7 +89,7 @@ pipeline {
 		stage('Register Package') {
 			steps {
 				parallel {
-					stage('Package1) {
+					stage('Package1') {
 						steps {
 							snDevOpsPackage(
 							name: "${packageName}",
@@ -109,7 +109,7 @@ pipeline {
 							package1 = true
 						}
 					}
-					stage('Package2) {
+					stage('Package2') {
 						steps {
 							snDevOpsPackage(
 							name: "${packageName}",
