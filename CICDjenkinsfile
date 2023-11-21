@@ -134,7 +134,10 @@ pipeline {
 		}
 		  
 		stage('Change') {
-			when { allOf { package1 == true; package2 == true } }
+			when { 
+				package1 == true
+				package2 == true 
+			}
 
 			steps {
 			    snDevOpsChange(changeRequestDetails: '''
