@@ -61,16 +61,19 @@ pipeline {
 				sonarSummaries()
 			}
 		}
-/*
+
 		stage('CheckmarxOne Security Scan') {
 			steps {
-				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx One", "projectName": "DemoProject", "projectId": "75acb348-c054-4ab3-807d-e17e92a923ab", "securityToolId": "fd0a44e0c3293510a653f92f050131c6"}'
+				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx One", "projectName": "DemoProject", "projectId": "75acb348-c054-4ab3-807d-e17e92a923ab"}'
+				//snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx One", "projectName": "DemoProject", "projectId": "75acb348-c054-4ab3-807d-e17e92a923ab", "securityToolId": "fd0a44e0c3293510a653f92f050131c6"}'
 				// scanner: Scanning tool and is required e.g. Checkmarx One.
 				// projectName/projectId: Name/Id of your Checkmarx One project and is required. This attribute is applicable only for Checkmarx One.
 				// scanId: Checkmarx One scan id and is optional. This attribute is applicable only for Checkmarx One.
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
+
+/*
 		stage('CheckmarxSAST Security Scan') {
 			steps {
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx SAST", "projectId": "1076", "securityToolId": "5fdb19e5c3f1f110cb77e74bb001317c"}'
@@ -148,7 +151,7 @@ pipeline {
 			    {
 			    "attributes": {
 					"requested_by": {
-						"name": "DevOps System"
+						"name": "DevOps Admin"
 					}, //requested_by with name.
 					//You can provide requested_by with sys_id. Example: "requested_by": "62826bf03710200044e0bfc8bcbe5df1", 
 					"assignment_group": {
@@ -156,12 +159,11 @@ pipeline {
 					}, //assignment_group with name.
 					//You can provide assignment_group with sys_id. Example: "assignment_group": "5f721d93c0a8010e015533746de18bf9",
 					"priority": "2",
-					//"comments": "This is a sample pipeline script to be added in your change step",
-					//"work_notes": "Update this to work_notes",
+					"comments": "This is a sample pipeline script to be added in your change step",
+					"work_notes": "Update this to work_notes",
 					//"start_date": "2022-01-05 11:59:59", //This is the planned start date.
 					//"end_date": "2022-01-08 11:59:59", // This is the planned end date.
-					"type": "normal",
-					"template": "4b175dd20a0a0b99004f35e506563fc6"
+					"chg_model": {"name": "devops"}
 				}
 			    }''')
 			}
