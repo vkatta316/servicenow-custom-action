@@ -105,7 +105,9 @@ pipeline {
 						    ],
 						    "branchName": "main"
 						}""")
-						package1 = true
+						script {
+							package1 = true
+						}
 					}
 				}
 				stage('Package2') {
@@ -125,7 +127,9 @@ pipeline {
 						    ],
 						    "branchName": "main"
 						}""")
-						package2 = true
+						script {
+							package2 = true
+						}
 					}
 				}
 			}
