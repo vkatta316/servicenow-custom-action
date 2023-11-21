@@ -4,6 +4,8 @@ def version = "1.${BUILD_NUMBER}"
 def semanticVersion = "1.${BUILD_NUMBER}.0"
 def repoName = "pramaraju96/ServiceNow-DevOps-Change-Sample" // Ensure after forking update the repoName accrodingly.
 def changeRequestNumber = null
+def package1 = false
+def package2 = false
 
 pipeline {
 	agent any
@@ -86,25 +88,54 @@ pipeline {
 */
 		stage('Register Package') {
 			steps {
-				snDevOpsPackage(
-				name: "${packageName}",
-				artifactsPayload: """
-				{
-				    "artifacts":
-				    [
-				        {
-				            "name": "${artifactname}",
-				            "version": "${version}",
-				            "semanticVersion": "${semanticVersion}",
-				            "repositoryName": "${repoName}"
-				        }
-				    ],
-				    "branchName": "main"
-				}""")
+				parallel {
+					stage('Package1) {
+						steps {
+							snDevOpsPackage(
+							name: "${packageName}",
+							artifactsPayload: """
+							{
+							    "artifacts":
+							    [
+							        {
+							            "name": "${artifactname}",
+							            "version": "${version}",
+							            "semanticVersion": "${semanticVersion}",
+							            "repositoryName": "${repoName}"
+							        }
+							    ],
+							    "branchName": "main"
+							}""")
+							package1 = true
+						}
+					}
+					stage('Package2) {
+						steps {
+							snDevOpsPackage(
+							name: "${packageName}",
+							artifactsPayload: """
+							{
+							    "artifacts":
+							    [
+							        {
+							            "name": "${artifactname}",
+							            "version": "${version}",
+							            "semanticVersion": "${semanticVersion}",
+							            "repositoryName": "${repoName}"
+							        }
+							    ],
+							    "branchName": "main"
+							}""")
+							package2 = true
+						}
+					}
+				}
 			}
 		}
 		  
 		stage('Change') {
+			when { allOf { package1 == true; package2 == true } }
+
 			steps {
 			    snDevOpsChange(changeRequestDetails: '''
 			    {
