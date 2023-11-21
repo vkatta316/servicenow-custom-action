@@ -87,47 +87,45 @@ pipeline {
 		}
 */
 		stage('Register Package') {
-			steps {
-				parallel {
-					stage('Package1') {
-						steps {
-							snDevOpsPackage(
-							name: "${packageName}",
-							artifactsPayload: """
+			parallel {
+				stage('Package1') {
+					steps {
+						snDevOpsPackage(
+						name: "${packageName}",
+						artifactsPayload: """
+						{
+						    "artifacts":
+						    [
 							{
-							    "artifacts":
-							    [
-							        {
-							            "name": "${artifactname}",
-							            "version": "${version}",
-							            "semanticVersion": "${semanticVersion}",
-							            "repositoryName": "${repoName}"
-							        }
-							    ],
-							    "branchName": "main"
-							}""")
-							package1 = true
-						}
+							    "name": "${artifactname}",
+							    "version": "${version}",
+							    "semanticVersion": "${semanticVersion}",
+							    "repositoryName": "${repoName}"
+							}
+						    ],
+						    "branchName": "main"
+						}""")
+						package1 = true
 					}
-					stage('Package2') {
-						steps {
-							snDevOpsPackage(
-							name: "${packageName}",
-							artifactsPayload: """
+				}
+				stage('Package2') {
+					steps {
+						snDevOpsPackage(
+						name: "${packageName}",
+						artifactsPayload: """
+						{
+						    "artifacts":
+						    [
 							{
-							    "artifacts":
-							    [
-							        {
-							            "name": "${artifactname}",
-							            "version": "${version}",
-							            "semanticVersion": "${semanticVersion}",
-							            "repositoryName": "${repoName}"
-							        }
-							    ],
-							    "branchName": "main"
-							}""")
-							package2 = true
-						}
+							    "name": "${artifactname}",
+							    "version": "${version}",
+							    "semanticVersion": "${semanticVersion}",
+							    "repositoryName": "${repoName}"
+							}
+						    ],
+						    "branchName": "main"
+						}""")
+						package2 = true
 					}
 				}
 			}
