@@ -135,8 +135,10 @@ pipeline {
 		  
 		stage('Change') {
 			when { 
-				package1 == true
-				package2 == true 
+				expression {
+					package1 == true
+					package2 == true 
+				}
 			}
 
 			steps {
