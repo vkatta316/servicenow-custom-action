@@ -76,7 +76,7 @@ pipeline {
 
 		stage('CheckmarxSAST Security Scan') {
 			steps {
-				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx SAST", "projectId": "1076", "securityToolId": "77c5b3534766b11082924115126d4304"}'
+				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx SAST", "projectId": "1076", "securityToolId": "fc650cbb87ee711094a2ea483cbb3569"}'
 				// scanner: Scanning tool and is required e.g. Checkmarx SAST.
 				// projectId: Id of your Checkmarx SAST project and is required. This attribute is applicable only for Checkmarx SAST.
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
