@@ -61,7 +61,7 @@ pipeline {
 				sonarSummaries()
 			}
 		}
-
+/*
 		stage('CheckmarxOne Security Scan') {
 			steps {
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx One", "projectName": "DemoProject", "projectId": "75acb348-c054-4ab3-807d-e17e92a923ab", "securityToolId": "fc650cbb87ee711094a2ea483cbb3569"}'
@@ -73,7 +73,7 @@ pipeline {
 			}
 		}
 
-
+*/
 		stage('CheckmarxSAST Security Scan') {
 			steps {
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx SAST", "projectId": "1076", "securityToolId": "fc650cbb87ee711094a2ea483cbb3569"}'
