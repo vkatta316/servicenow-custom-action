@@ -37,6 +37,18 @@ pipeline {
 				}
 			}
 		}
+		
+		stage('Generate SBOM') {
+			steps {
+			  	sh 'mvn org.cyclonedx:cyclonedx-maven-plugin:makeAggregateBom'
+				sleep(5);
+			}
+			post {
+				always {
+					sh 'ls -lta'
+				}
+			}
+		}
 
 		stage('Register Artifact') {
 			steps {
