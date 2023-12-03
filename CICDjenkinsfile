@@ -162,20 +162,10 @@ pipeline {
 			    snDevOpsChange(changeRequestDetails: '''
 			    {
 			    "attributes": {
-					"requested_by": {
-						"name": "DevOps Admin"
-					}, //requested_by with name.
-					//You can provide requested_by with sys_id. Example: "requested_by": "62826bf03710200044e0bfc8bcbe5df1", 
 					"assignment_group": {
 						"name": "Change Management"
-					}, //assignment_group with name.
-					//You can provide assignment_group with sys_id. Example: "assignment_group": "5f721d93c0a8010e015533746de18bf9",
-					"priority": "2",
-					"comments": "This is a sample pipeline script to be added in your change step",
-					"work_notes": "Update this to work_notes",
-					//"start_date": "2022-01-05 11:59:59", //This is the planned start date.
-					//"end_date": "2022-01-08 11:59:59", // This is the planned end date.
-					"chg_model": {"name": "devops"}
+					},
+					"chg_model": {"name": "Normal"}
 				}
 			    }''')
 			}
