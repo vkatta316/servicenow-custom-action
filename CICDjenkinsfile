@@ -168,7 +168,7 @@ pipeline {
 					"assignment_group": {
 						"name": "Change Management"
 					},
-					"chg_model": {"name": "Normal"}
+					"chg_model": {"name": "DevOps"}
 				}
 			    }''')
 			}
