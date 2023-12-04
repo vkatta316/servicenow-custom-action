@@ -95,13 +95,13 @@ pipeline {
 			}
 		}
 
-/*
+
 		stage('Veracode Security Scan') {
 			steps {
-				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Veracode", "applicationName": "VeraDemo10", "securityToolId": "0248c4acc3e53510a653f92f0501316e"}'
+				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Veracode", "applicationName": "VeraDemo10"}'
 			}
 		}
-*/
+/**/
 		stage('Register Package') {
 			parallel {
 				stage('Package1') {
