@@ -74,6 +74,12 @@ pipeline {
 			}
 		}
 
+		stage('checkmarxASTScanner CxOne') {
+			steps {
+				checkmarxASTScanner additionalOptions: '', baseAuthUrl: 'https://ast.checkmarx.net', branchName: '${GIT_BRANCH}', checkmarxInstallation: 'Checkmarx CLI', credentialsId: 'CxOne', projectName: 'DemoProject', serverUrl: 'https://iam.checkmarx.net', tenantName: 'servicenow-nfr', useAuthenticationUrl: true, useOwnServerCredentials: true
+			}
+		}
+
 		stage('CheckmarxOne Security Scan') {
 			steps {
 				sleep(5);
