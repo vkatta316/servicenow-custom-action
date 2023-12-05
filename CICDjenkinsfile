@@ -37,7 +37,7 @@ pipeline {
 				}
 			}
 		}
-		
+/*		
 		stage('Generate SBOM') {
 			steps {
 			  	sh 'mvn org.cyclonedx:cyclonedx-maven-plugin:makeAggregateBom'
@@ -49,7 +49,7 @@ pipeline {
 				}
 			}
 		}
-
+*/
 		stage('Register Artifact') {
 			steps {
 				snDevOpsArtifact(artifactsPayload: """
@@ -67,12 +67,13 @@ pipeline {
 				}""")
 			}     
 		}
-
+/*
 		stage('Sonar Scan') {
 			steps {
 				sonarSummaries()
 			}
 		}
+
 
 		stage('Veracode Security Scan') {
 			steps {
@@ -84,7 +85,7 @@ pipeline {
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
-/*
+
 		stage('CheckmarxOne Security Scan') {
 			steps {
 				sleep(5);
@@ -170,7 +171,8 @@ pipeline {
 					"assignment_group": {
 						"name": "Change Management"
 					},
-					"chg_model": {"name": "DevOps"}
+					"chg_model": {"name": "DevOps"},
+					"template": "9184a37e937ef51053e5b8284dba101a"
 				}
 			    }''')
 			}
