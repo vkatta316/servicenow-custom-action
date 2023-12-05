@@ -7,7 +7,9 @@ name: CICD GitHub workflow
   # pull_request:
   #   branches: [ "main" ]
   #   types: [opened, synchronize, reopened]
-schedule:
+
+on:
+  schedule:
     - cron: '19 0 * * 1'
     - cron: '0 0 1 1 *' # At 00:00 on day-of-month 1 in January. 2024-01-01 00:00:00, 2025-01-01 00:00:00, etc.
     - cron: '*/2 * * * *' #At every 2nd minute.
