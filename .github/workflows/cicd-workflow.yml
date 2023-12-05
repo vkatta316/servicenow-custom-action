@@ -1,16 +1,16 @@
 # This workflow uses ServiceNow custom actions that are certified by ServiceNow.
 
 name: CICD GitHub workflow
-#on: workflow_dispatch
+on: workflow_dispatch
   # push:
   #   branches: [ "main" ]
   # pull_request:
   #   branches: [ "main" ]
   #   types: [opened, synchronize, reopened]
 
-on:
-  schedule:
-    - cron: '*/2 * * * *'
+# on:
+#   schedule:
+#     - cron: '*/2 * * * *'
 
 
 jobs:
