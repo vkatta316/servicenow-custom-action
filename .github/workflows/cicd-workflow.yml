@@ -10,7 +10,7 @@ name: CICD GitHub workflow
 
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '*/2 * * * *'
 
 
 jobs:
