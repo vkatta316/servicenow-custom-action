@@ -67,14 +67,14 @@ pipeline {
 				}""")
 			}     
 		}
-/*
+
 		stage('Sonar Scan') {
 			steps {
 				sonarSummaries()
 			}
 		}
 
-
+/*
 		stage('Veracode Security Scan') {
 			steps {
 				sleep(5);
@@ -171,8 +171,7 @@ pipeline {
 					"assignment_group": {
 						"name": "Change Management"
 					},
-					"chg_model": {"name": "DevOps"},
-					"template": "9184a37e937ef51053e5b8284dba101a"
+					"chg_model": {"name": "DevOps"}
 				}
 			    }''')
 			}
