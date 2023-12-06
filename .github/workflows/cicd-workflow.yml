@@ -230,6 +230,9 @@ jobs:
     runs-on: ubuntu-latest
     name: 'ServiceNow DevOps Update Change'
     steps:
+      - name: ServiceNow DevOps Get Change output
+        run: echo 'Output status of ServiceNow DevOps Get Change is -> ${{ steps.get_change.outputs.change-request-number }}'  >> $GITHUB_OUTPUT
+     
       - name: ServiceNow DevOps Update Change
         # You may pin to the exact commit or the version.
         # uses: ServiceNow/servicenow-devops-update-change@66d51cb13684d8287a763bc3f4dc4531c6ab3306
@@ -245,7 +248,7 @@ jobs:
           # Github Context
           context-github: ${{ toJSON(github) }}
           # Change Request Number to be Updated
-          change-request-number: ${{ steps.get_change.outputs.change-request-number }}
+          change-request-number: "${{ steps.get_change.outputs.change-request-number }}"
           # The customized inputs to create change with the requested details.
           change-request-details: '{"state":"3","close_code":"successful_issues","close_notes":"Test results successful"}'
           
