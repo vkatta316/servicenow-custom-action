@@ -190,7 +190,7 @@ jobs:
           context-github: ${{ toJSON(github) }}
           # Display Name of the Job
           job-name: 'ServiceNow DevOps Change'
-          change-request: '{"attributes":{"chg_model":{"name":"Normal"}, "requested_by":{"name": "DevOps System"},"assignment_group":{"name": "Change management"},"priority": "2","comments": "This is a sample pipeline script to be added in your change step","work_notes": "Update this to work_notes"}}'
+          change-request: '{"attributes":{"type":"emergency", "requested_by":{"name": "DevOps System"},"assignment_group":{"name": "Change management"},"priority": "2","comments": "This is a sample pipeline script to be added in your change step","work_notes": "Update this to work_notes"}}'
           # You can specify the requested_by attribute either with name or sys_id. Example: "requested_by":{"name": "Test User"} or "requested_by": "62826bf03710200044e0bfc8bcbe5df1"
           # You can specify the assignment_group attribute either with name or sys_id. Example: "assignment_group":{"name": "Change Approval Team"} or "assignment_group": "5f721d93c0a8010e015533746de18bf9"
           # start_date: Enter the planned start date
