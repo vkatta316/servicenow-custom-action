@@ -202,6 +202,8 @@ jobs:
     # type of machine to run the job on
     runs-on: ubuntu-latest
     name: 'ServiceNow DevOps Get Change'
+    outputs:
+      change-request-number: ${{ steps.get_change.outputs.change-request-number }}
     steps:
       - name: ServiceNow DevOps Get Change
         # You may pin to the exact commit or the version.
