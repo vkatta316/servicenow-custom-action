@@ -230,9 +230,6 @@ jobs:
     runs-on: ubuntu-latest
     name: 'ServiceNow DevOps Update Change'
     steps:
-      - name: ServiceNow DevOps Get Change output
-        run: echo 'Output status of ServiceNow DevOps Get Change is -> ${{ steps.get_change.outputs.change-request-number }}'  >> $GITHUB_OUTPUT
-     
       - name: ServiceNow DevOps Update Change
         # You may pin to the exact commit or the version.
         # uses: ServiceNow/servicenow-devops-update-change@66d51cb13684d8287a763bc3f4dc4531c6ab3306
