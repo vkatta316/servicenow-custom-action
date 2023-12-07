@@ -11,9 +11,10 @@ pipeline {
         stage("test") {
             
             steps {
+		echo 'this is test stage1'
 		sleep(500)
-                echo 'this is test stage'
-                snDevOpsChange()
+                echo 'this is test stage2'
+                //snDevOpsChange()
             }
         }
         stage("deploy") {
