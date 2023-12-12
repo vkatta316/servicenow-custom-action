@@ -171,7 +171,7 @@ pipeline {
 					"assignment_group": {
 						"name": "Change Management"
 					},
-					"chg_model": {"name": "DevOps"}
+					"type": "emergency"
 				}
 			    }''')
 			}
