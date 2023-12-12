@@ -77,7 +77,7 @@ pipeline {
 
 		stage('Veracode Security Scan') {
 			steps {
-				sleep(500000);
+				sleep(10);
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Veracode", "applicationName": "VeraDemo10"}'
 				// scanner: Scanning tool and is required e.g. Veracode.
 				// applicationName: Name of your Veracode application and is required. This attribute is applicable only for Veracode.
