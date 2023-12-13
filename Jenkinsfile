@@ -2,12 +2,7 @@ pipeline {
     agent any
     
     tools {
-        maven 'Maven'
-    }
-
-    environment {
-        SCANNER_HOME = tool 'sonarScanner'
-        DOCKER_IMAGE_NAME = "ramadevops.jfrog.io/docker-local/hello-frog:1.0.0"
+        maven 'rama01Maven'
     }
 
     stages {
