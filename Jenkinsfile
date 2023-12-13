@@ -5,11 +5,6 @@ pipeline {
         maven 'rama01Maven'
     }
 
-    environment {
-        SCANNER_HOME = tool 'sonarScanner'
-        DOCKER_IMAGE_NAME = "ramadevops.jfrog.io/docker-local/hello-frog:1.0.0"
-    }
-
     stages {
         stage('Build') {
             steps {
