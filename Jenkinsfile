@@ -37,6 +37,12 @@ pipeline {
             }       
         }
 
+        stage('Security Summaries') {
+            steps {
+                checkmarxASTScanner additionalOptions: '', baseAuthUrl: 'https://iam.checkmarx.net', branchName: '', checkmarxInstallation: 'Checkmarx CLI', credentialsId: 'clientIdAkhand', projectName: 'DemoProject', serverUrl: 'https://ast.checkmarx.net', tenantName: 'servicenow-nfr'
+            }       
+        }
+        
         stage('Upload to JFrog') {
             steps {
                 sh 'mvn package'
@@ -46,11 +52,11 @@ pipeline {
             post{
                 always{
                     script{
-                        def server = Artifactory.server 'ramadevops'
+                        def server = Artifactory.server 'ramarajudevops'
                         def uploadSpec = """{
                         "files": [{
-                        "pattern": "target/devops-e2e-1.40.0-SNAPSHOT.jar",
-                        "target": "devops-jfrog-local-repo/"
+                        "pattern": "target/ServiceNow-DevOps-Change-Sample-1.0-SNAPSHOT.jar",
+                        "target": "default-maven-local/"
                         }]
                         }"""
 
@@ -65,16 +71,16 @@ pipeline {
         stage('Download from JFrog') {
             steps {
                 echo "Download the JFrog artifacts"
-                echo "/var/jenkins_home/workspace/rama folder/CD Pipeline/${env.BUILD_NUMBER}/"
+                echo "/var/jenkins_home/workspace/CICD Pipeline with security/${env.BUILD_NUMBER}/"
             }
             post{
                 always{
                     script{
-                        def server = Artifactory.server 'ramadevops'
+                        def server = Artifactory.server 'ramarajudevops'
                         def downSpec= """{
                         "files": [{
-                        "pattern": "devops-jfrog-local-repo/devops-e2e-1.40.0-SNAPSHOT.jar",
-                        "target":"/var/jenkins_home/workspace/rama folder/CD Pipeline/${BUILD_NUMBER}/"
+                        "pattern": "default-maven-local/ServiceNow-DevOps-Change-Sample-1.0-SNAPSHOT.jar",
+                        "target":"/var/jenkins_home/workspace/CICD Pipeline with security/${BUILD_NUMBER}/"
                         }]
                         }"""
 
