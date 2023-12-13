@@ -113,6 +113,12 @@ pipeline {
                 """)
             }
         }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the change'
+            }
+        }        
     }
 }
 
