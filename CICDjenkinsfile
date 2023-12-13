@@ -74,7 +74,7 @@ pipeline {
 			}
 		}
 
-
+/*
 		stage('Veracode Security Scan') {
 			steps {
 				sleep(10);
@@ -85,7 +85,7 @@ pipeline {
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
-/*
+*/
 		stage('CheckmarxOne Security Scan') {
 			steps {
 				sleep(5);
@@ -98,6 +98,7 @@ pipeline {
 			}
 		}
 
+/*
 		stage('CheckmarxSAST Security Scan') {
 			steps {
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx SAST", "projectId": "3285", "securityToolId": "ccb9798f87b6bd10c29dea483cbb35b7"}'
