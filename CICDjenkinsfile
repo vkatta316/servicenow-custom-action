@@ -169,9 +169,6 @@ pipeline {
 			    {
 				"autoCloseChange": true,
 			    "attributes": {
-					"assignment_group": {
-						"name": "Change Management"
-					},
 					"chg_model": {"name":"devops"}
 				}
 			    }''')
