@@ -11,7 +11,8 @@ pipeline {
 	agent any
 	
 	tools {
-		maven 'rama01Maven'
+		//maven 'rama01Maven'
+		maven 'maven'
 	}
 
 	environment {
