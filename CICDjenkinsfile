@@ -78,7 +78,7 @@ pipeline {
 		stage('Veracode Security Scan') {
 			steps {
 				sleep(10);
-				snDevOpsSecurityResult securityResultAttributes: '{"scanner":"Veracode", "applicationName":"VeraDemo10", "securityToolId":"1c9836c393cf7510271afefd1dba104e"}'
+				snDevOpsSecurityResult securityResultAttributes: '{"scanner":"Veracode", "applicationName":"VeraDemo10"}'
 				// scanner: Scanning tool and is required e.g. Veracode.
 				// applicationName: Name of your Veracode application and is required. This attribute is applicable only for Veracode.
 				// buildVersion: Veracode Scan name / build version and is optional. This attribute is applicable only for Veracode.
