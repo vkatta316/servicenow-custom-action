@@ -71,7 +71,8 @@ pipeline {
 
 		stage('Sonar Scan') {
 			steps {
-				sonarSummaries()
+				//sonarSummaries()
+sh '${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=sonar-projects-validation_devops-project-sonar -Dsonar.organization=sonar-projects-validation -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=bc30d5fcb3aa234aef0ff13052c72f28bf75d8af -Dsonar.java.binaries=target/ -Dsonar.branch.name=master'
 			}
 		}
 
