@@ -72,7 +72,8 @@ pipeline {
 		stage('Sonar Scan') {
 			steps {
 				//sonarSummaries()
-sh '${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=sonar-projects-validation_devops-project-sonar -Dsonar.organization=sonar-projects-validation -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=bc30d5fcb3aa234aef0ff13052c72f28bf75d8af -Dsonar.java.binaries=target/ -Dsonar.branch.name=master'
+//sh '${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=sonar-projects-validation_devops-project-sonar -Dsonar.organization=sonar-projects-validation -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=bc30d5fcb3aa234aef0ff13052c72f28bf75d8af -Dsonar.java.binaries=target/ -Dsonar.branch.name=master'
+sunilSonarSummaries()
 			}
 		}
 
@@ -206,3 +207,19 @@ def sonarSummaries() {
 		    -Dsonar.projectKey=pramaraju96_sonar-training-examples'
     }
 }
+
+def sunilSonarSummaries() {
+//-Dsonar.projectKey=sonar-projects-validation_devops-project-sonar -Dsonar.organization=sonar-projects-validation -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=bc30d5fcb3aa234aef0ff13052c72f28bf75d8af -Dsonar.java.binaries=target/ -Dsonar.branch.name=master'
+	withSonarQubeEnv(installationName: 'sonarScanner'){
+		sh 'mvn clean verify sonar:sonar \
+		    -Pcoverage \
+		    -Dsonar.token=bc30d5fcb3aa234aef0ff13052c72f28bf75d8af \
+		    -Dsonar.host.url=https://sonarcloud.io \
+		    -Dsonar.organization=sonar-projects-validation \
+		    -Dsonar.projectKey=sonar-projects-validation_devops-project-sonar'
+    }
+}
+
+
+
+
