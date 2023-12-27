@@ -63,7 +63,7 @@ pipeline {
 				        "repositoryName": "${repoName}"
 				    }
 				],
-				"branchName": "main"
+				"branchName": "pramaraju96-patch-3"
 				}""")
 			}     
 		}
@@ -74,18 +74,18 @@ pipeline {
 			}
 		}
 
-/*
+
 		stage('Veracode Security Scan') {
 			steps {
 				sleep(10);
-				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Veracode", "applicationName": "VeraDemo10", "securityToolId": "9e1acf3d9787b910c925fce3a253af0c"}'
+				snDevOpsSecurityResult securityResultAttributes: '{"scanner":"Veracode", "applicationName":"VeraDemo10", "securityToolId":"1c9836c393cf7510271afefd1dba104e"}'
 				// scanner: Scanning tool and is required e.g. Veracode.
 				// applicationName: Name of your Veracode application and is required. This attribute is applicable only for Veracode.
 				// buildVersion: Veracode Scan name / build version and is optional. This attribute is applicable only for Veracode.
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
-*/
+/*
 		stage('CheckmarxOne Security Scan') {
 			steps {
 				sleep(5);
@@ -97,7 +97,7 @@ pipeline {
 			}
 		}
 
-/*
+
 		stage('CheckmarxSAST Security Scan') {
 			steps {
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx SAST", "projectId": "3285", "securityToolId": "ccb9798f87b6bd10c29dea483cbb35b7"}'
@@ -124,7 +124,7 @@ pipeline {
 							    "repositoryName": "${repoName}"
 							}
 						    ],
-						    "branchName": "main"
+						    "branchName": "pramaraju96-patch-3"
 						}""")
 						script {
 							package1 = true
@@ -146,7 +146,7 @@ pipeline {
 							    "repositoryName": "${repoName}"
 							}
 						    ],
-						    "branchName": "main"
+						    "branchName": "pramaraju96-patch-3"
 						}""")
 						script {
 							package2 = true
@@ -167,11 +167,9 @@ pipeline {
 			steps {
 			    snDevOpsChange(changeRequestDetails: '''
 			    {
+				"autoCloseChange": true,
 			    "attributes": {
-					"assignment_group": {
-						"name": "Change Management"
-					},
-					"type": "emergency"
+					"chg_model": {"name":"normal"}
 				}
 			    }''')
 			}
@@ -184,7 +182,7 @@ pipeline {
 		}
 	}
 }
-
+/*
 def sonarSummaries() {
 	withSonarQubeEnv(installationName: 'ramasonarcloud'){
 		sh 'mvn clean verify sonar:sonar \
@@ -193,5 +191,17 @@ def sonarSummaries() {
 		    -Dsonar.host.url=https://sonarcloud.io \
 		    -Dsonar.organization=pramaraju96 \
 		    -Dsonar.projectKey=pramaraju96_ServiceNow-DevOps-Change-Sample'
+    }
+}
+*/
+def sonarSummaries() {
+	withSonarQubeEnv(installationName: 'ramasonarcloud'){
+		sh 'mvn clean verify sonar:sonar \
+		    -Pcoverage \
+		    -Dsonar.branch.name=pramaraju96-patch-3 \
+		    -Dsonar.token=1926d793f92181dd0ac406335d4d4bea392a3023 \
+		    -Dsonar.host.url=https://sonarcloud.io \
+		    -Dsonar.organization=pramaraju96 \
+		    -Dsonar.projectKey=pramaraju96_sonar-training-examples'
     }
 }
