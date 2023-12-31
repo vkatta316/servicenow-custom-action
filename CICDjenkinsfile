@@ -12,6 +12,7 @@ pipeline {
 	
 	tools {
 		maven 'rama01Maven'
+
 	}
 
 	environment {
