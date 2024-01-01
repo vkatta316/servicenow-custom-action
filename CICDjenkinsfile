@@ -68,7 +68,7 @@ pipeline {
 				}""")
 			}     
 		}
-
+/*
 		stage('Sonar Scan') {
 			steps {
 				sonarSummaries()
@@ -89,6 +89,7 @@ pipeline {
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
+*/
 /*
 		stage('CheckmarxOne Security Scan') {
 			steps {
@@ -112,61 +113,26 @@ pipeline {
 		}
 */
 		stage('Register Package') {
-			parallel {
-				stage('Package1') {
-					steps {
-						snDevOpsPackage(
-						name: "${packageName}",
-						artifactsPayload: """
+				steps {
+					snDevOpsPackage(
+					name: "${packageName}",
+					artifactsPayload: """
+					{
+					    "artifacts":
+					    [
 						{
-						    "artifacts":
-						    [
-							{
-							    "name": "${artifactname}",
-							    "version": "${version}",
-							    "semanticVersion": "${semanticVersion}",
-							    "repositoryName": "${repoName}"
-							}
-						    ],
-						    "branchName": "main"
-						}""")
-						script {
-							package1 = true
+						    "name": "${artifactname}",
+						    "version": "${version}",
+						    "semanticVersion": "${semanticVersion}",
+						    "repositoryName": "${repoName}"
 						}
-					}
+					    ],
+					    "branchName": "main"
+					}""")
 				}
-				stage('Package2') {
-					steps {
-						snDevOpsPackage(
-						name: "${packageName}",
-						artifactsPayload: """
-						{
-						    "artifacts":
-						    [
-							{
-							    "name": "${artifactname}",
-							    "version": "${version}",
-							    "semanticVersion": "${semanticVersion}",
-							    "repositoryName": "${repoName}"
-							}
-						    ],
-						    "branchName": "main"
-						}""")
-						script {
-							package2 = true
-						}
-					}
-				}
-			}
 		}
 		  
 		stage('Change') {
-			when { 
-				expression {
-					package1 == true
-					package2 == true 
-				}
-			}
 
 			steps {
 			    snDevOpsChange(changeRequestDetails: '''
