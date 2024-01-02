@@ -51,6 +51,7 @@ pipeline {
 			}
 		}
 */
+
 		stage('Register Artifact') {
 			steps {
 				snDevOpsArtifact(artifactsPayload: """
