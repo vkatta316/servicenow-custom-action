@@ -38,6 +38,7 @@ pipeline {
 				}
 			}
 		}
+
 /*		
 		stage('Generate SBOM') {
 			steps {
@@ -51,6 +52,7 @@ pipeline {
 			}
 		}
 */
+
 		stage('Register Artifact') {
 			steps {
 				snDevOpsArtifact(artifactsPayload: """
