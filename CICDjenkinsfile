@@ -70,13 +70,12 @@ pipeline {
 				}""")
 			}     
 		}
-/*
+
 		stage('Sonar Scan') {
 			steps {
 				sonarSummaries()
-//sh '${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=sonar-projects-validation_devops-project-sonar -Dsonar.organization=sonar-projects-validation -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=bc30d5fcb3aa234aef0ff13052c72f28bf75d8af -Dsonar.java.binaries=target/ -Dsonar.branch.name=master'
-//sunilSonarSummaries()
-
+				//sh '${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=sonar-projects-validation_devops-project-sonar -Dsonar.organization=sonar-projects-validation -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=bc30d5fcb3aa234aef0ff13052c72f28bf75d8af -Dsonar.java.binaries=target/ -Dsonar.branch.name=master'
+				//sunilSonarSummaries()
 			}
 		}
 
@@ -84,14 +83,14 @@ pipeline {
 		stage('Veracode Security Scan') {
 			steps {
 				sleep(10);
-				snDevOpsSecurityResult securityResultAttributes: '{"scanner":"Veracode", "applicationName":"VeraDemo10", "securityToolId": "5d15353093d37110271afefd1dba10f9"}'
+				snDevOpsSecurityResult securityResultAttributes: '{"scanner":"Veracode", "applicationName":"ServiceNow DevOps App#1"}'
 				// scanner: Scanning tool and is required e.g. Veracode.
 				// applicationName: Name of your Veracode application and is required. This attribute is applicable only for Veracode.
 				// buildVersion: Veracode Scan name / build version and is optional. This attribute is applicable only for Veracode.
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
-*/
+
 /*
 		stage('CheckmarxOne Security Scan') {
 			steps {
@@ -140,8 +139,8 @@ pipeline {
 			    snDevOpsChange(changeRequestDetails: '''
 			    {
 				"autoCloseChange": true,
-			    "attributes": {
-					"chg_model": {"name":"normal"}
+				"attributes": {
+					"chg_model": {"name":"devops"}
 				}
 			    }''')
 			}
