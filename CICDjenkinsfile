@@ -74,15 +74,18 @@ pipeline {
 		stage('Sonar Scan') {
 			steps {
 				sonarSummaries()
-				//sh '${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=sonar-projects-validation_devops-project-sonar -Dsonar.organization=sonar-projects-validation -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=bc30d5fcb3aa234aef0ff13052c72f28bf75d8af -Dsonar.java.binaries=target/ -Dsonar.branch.name=master'
-				//sunilSonarSummaries()
 			}
 		}
 
 
 		stage('Veracode Security Scan') {
 			steps {
+
+				// using Veracode command, timeout of 20 minutes
+				//veracode applicationName: "${env.VERACODE_APPLICATION_NAME}", criticality: 'VeryHigh', debug: true, timeout: 20, fileNamePattern: '', pHost: '', pPassword: '', pUser: '', replacementPattern: '', sandboxName: '', scanExcludesPattern: '', scanIncludesPattern: '', scanName: "${BUILD_TAG}", uploadExcludesPattern: '', uploadIncludesPattern: 'target/ServiceNow-DevOps-Change-Sample-1.0-SNAPSHOT.jar', vid: "5a57339d6779ffb76782e03df3f6e9d1", vkey: "f31d151c427a3286469a6291b14dee15e7f553e066b32c801f09014dc3282de4f51a81cd0bde7c7dd9d95de9a71a32c8a2c582158f278320ae765fe9fd232e0a"
+				
 				sleep(10);
+
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner":"Veracode", "applicationName":"ServiceNow DevOps App#1"}'
 				// scanner: Scanning tool and is required e.g. Veracode.
 				// applicationName: Name of your Veracode application and is required. This attribute is applicable only for Veracode.
@@ -90,6 +93,7 @@ pipeline {
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
+
 
 /*
 		stage('CheckmarxOne Security Scan') {
@@ -102,10 +106,15 @@ pipeline {
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
+*/
 
-
+/*
 		stage('CheckmarxSAST Security Scan') {
 			steps {
+
+				// using Checkmarx command
+				checkmarxASTScanner additionalOptions: '', baseAuthUrl: 'https://iam.checkmarx.net', branchName: '', checkmarxInstallation: 'Checkmarx CLI', credentialsId: 'clientIdAkhand', projectName: 'DemoProject', serverUrl: 'https://ast.checkmarx.net', tenantName: 'servicenow-nfr'
+
 				snDevOpsSecurityResult securityResultAttributes: '{"scanner": "Checkmarx SAST", "projectId": "3285", "securityToolId": "ccb9798f87b6bd10c29dea483cbb35b7"}'
 				// scanner: Scanning tool and is required e.g. Checkmarx SAST.
 				// projectId: Id of your Checkmarx SAST project and is required. This attribute is applicable only for Checkmarx SAST.
@@ -113,6 +122,7 @@ pipeline {
 			}
 		}
 */
+
 		stage('Register Package') {
 				steps {
 					snDevOpsPackage(
