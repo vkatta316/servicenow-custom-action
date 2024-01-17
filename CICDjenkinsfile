@@ -77,7 +77,7 @@ pipeline {
 			}
 		}
 
-
+/*
 		stage('Veracode Security Scan') {
 			steps {
 
@@ -93,7 +93,7 @@ pipeline {
 				// securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 			}
 		}
-
+*/
 
 /*
 		stage('CheckmarxOne Security Scan') {
