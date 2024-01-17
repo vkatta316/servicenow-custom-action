@@ -150,7 +150,7 @@ pipeline {
 			    {
 				"autoCloseChange": true,
 				"attributes": {
-					"chg_model": {"name":"devops"}
+					"chg_model": {"name":"normal"}
 				}
 			    }''')
 			}
