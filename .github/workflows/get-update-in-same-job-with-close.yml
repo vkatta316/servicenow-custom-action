@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:     
       - name: ServiceNow Change Approval
-        uses: ServiceNow/servicenow-devops-change@main
+        uses: ServiceNow/servicenow-devops-change@dev
         id: create
         with:
           devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
@@ -31,10 +31,10 @@ jobs:
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@dev
         
       - name: Custom Action GET
-        uses: ServiceNow/servicenow-devops-get-change@v2.0.0  
+        uses: ServiceNow/servicenow-devops-get-change@dev 
         # Uses an action in the root directory
         id: get
         with:
@@ -49,10 +49,10 @@ jobs:
         run: echo "change-request-number = ${{ steps.get.outputs.change-request-number }}" >> $GITHUB_OUTPUT
          
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@dev
         
       - name: Custom Action UPDATE
-        uses:  ServiceNow/servicenow-devops-update-change@v2.0.0 
+        uses:  ServiceNow/servicenow-devops-update-change@dev
         # Uses an action in the root directory
         id: update
         with:
