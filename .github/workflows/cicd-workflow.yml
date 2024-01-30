@@ -97,7 +97,7 @@ jobs:
   
    - name: ServiceNow DevOps Sonar Scan Results
    # You may pin to the exact commit or the version.     
-     uses: ServiceNow/servicenow-devops-sonar@dev
+     uses: ServiceNow/servicenow-devops-sonar@main
      with:
          # ServiceNow Instance URL
          instance-url: ${{ secrets.SN_INSTANCE_URL }}
