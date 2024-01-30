@@ -1,0 +1,102 @@
+name: GET-UPDATE in same job
+
+on: 
+  workflow_dispatch:
+
+env:
+  buildNumber: "${{github.run_id}}"
+  pipelineName: "${{github.repository}}/${{github.workflow}}"
+
+jobs:
+  ServiceNowDevOpsChange:
+    # jobs that must complete successfully before this job will run
+    #needs: build
+    # type of machine to run the job on
+    runs-on: ubuntu-latest
+    name: 'ServiceNow DevOps Change'
+
+    steps:
+      - name: ServiceNow DevOps Change Automation
+        id: create_change
+        uses: ServiceNow/servicenow-devops-change@dev
+        with:
+          # Devops Integration Token
+          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          # ServiceNow Instance URL
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          # Orchestration Tool Id
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          # GitHub Context
+          context-github: ${{ toJSON(github) }}
+          # Display Name of the Job
+          job-name: 'ServiceNow DevOps Change'
+          change-request: '{"attributes":{"chg_model":{"name":"devops"},"requested_by":{"name": "Aileen Mottern"},"assignment_group":{"name": "Change Management"},"priority": "2","comments": "This is a sample pipeline script to be added in your change step","work_notes": "Update this to work_notes","start_date": "2023-09-07 11:59:59","end_date": "2023-09-09 11:59:59"}}'
+          # You can specify the requested_by attribute either with name or sys_id. Example: "requested_by":{"name": "Test User"} or "requested_by": "62826bf03710200044e0bfc8bcbe5df1"
+          # You can specify the assignment_group attribute either with name or sys_id. Example: "assignment_group":{"name": "Change Approval Team"} or "assignment_group": "5f721d93c0a8010e015533746de18bf9"
+          # start_date: This is the planned start date
+          # end_date: This is the planned end date
+      - name: Output of ServiceNow DevOps Change Automation
+        run: |
+          echo 'Output of ServiceNow DevOps Change Automation is change-request-number = ${{ steps.create_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
+          echo 'Output of ServiceNow DevOps Change Automation is change-request-sys-id = ${{ steps.create_change.outputs.change-request-sys-id }}' >> $GITHUB_OUTPUT
+
+  ServiceNowDevOpsGetAndUpdateChange:
+    # jobs that must complete successfully before this job will run
+    needs: ServiceNowDevOpsChange
+    # type of machine to run the job on
+    runs-on: ubuntu-latest
+    outputs:
+      # change-request-number from GET change custom action
+      #changeRequestNumber: ${{ steps.get_change.outputs.change-request-number }}
+      # change-request-number from CREATE change custom action
+      changeRequestNumber: ${{ steps.create_change.outputs.change-request-number }}
+    name: 'ServiceNow DevOps Get and Update Change'
+    steps:
+      - name: Print environment variables
+        run:  |
+          echo "buildNumber = ${{ env.buildNumber }}"
+          echo "pipelineName = ${{ env.pipelineName }}"
+          echo "stageName = ${{ github.job }}"
+      - name: ServiceNow DevOps Get Change
+        # You may pin to the exact commit or the version.
+        # uses: ServiceNow/servicenow-devops-get-change@0f8b1914adeaec764a4286bdd9cba73ed1c6097f
+        uses: ServiceNow/servicenow-devops-get-change@v2.0.0
+        id: get_change
+        with:
+          # ServiceNow Instance URL
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          # Devops Integration Token
+          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          # Orchestration Tool Id
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          # Github Context
+          context-github: ${{ toJSON(github) }}
+          # The inputs to identify change at Servicenow and GET it.
+          change-details: '{"build_number": "${{ env.buildNumber }}", "pipeline_name": "${{ env.pipelineName }}", "stage_name": "${{ github.job.name }}"}'
+          #change-details: '{"build_number": "", "pipeline_name": "", "stage_name": ""}'
+          #change-details: '{"build_number": null, "pipeline_name": null, "stage_name": null}'
+
+      - name: Output of ServiceNow DevOps Get change
+        run: echo 'Output of ServiceNow DevOps Get Change is change-request-number = ${{ steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
+      
+      - name: ServiceNow DevOps Update Change
+        # You may pin to the exact commit or the version.
+        # uses: ServiceNow/servicenow-devops-update-change@66d51cb13684d8287a763bc3f4dc4531c6ab3306
+        uses: ServiceNow/servicenow-devops-update-change@v2.0.0
+        id: update_change
+        with:
+          # ServiceNow Instance URL
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          # ServiceNow Devops security token
+          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          # Orchestration Tool Id of the tool created in ServiceNow
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          # Github Context
+          context-github: ${{ toJSON(github) }}
+          # Change Request Number to be Updated
+          change-request-number: ${{ steps.get_change.outputs.change-request-number }}
+          # The customized inputs to create change with the requested details.
+          change-request-details: '{ "state":"3","close_code":"successful_issues","close_notes": "Test results unsuccessful" }'
+      
+      - name: Output of ServiceNow DevOps Update change
+        run: echo 'Output status of ServiceNow DevOps Update Change is ${{ steps.update_change.status }}'  >> $GITHUB_OUTPUT
