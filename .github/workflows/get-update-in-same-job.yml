@@ -76,8 +76,8 @@ jobs:
           #change-details: '{"build_number": "", "pipeline_name": "", "stage_name": ""}'
           #change-details: '{"build_number": null, "pipeline_name": null, "stage_name": null}'
 
-      - name: Output of ServiceNow DevOps Get change
-        run: echo 'Output of ServiceNow DevOps Get Change is change-request-number = ${{ steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
+      # - name: Output of ServiceNow DevOps Get change
+      #   run: echo 'Output of ServiceNow DevOps Get Change is change-request-number = ${{ steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
       
       - name: ServiceNow DevOps Update Change
         # You may pin to the exact commit or the version.
