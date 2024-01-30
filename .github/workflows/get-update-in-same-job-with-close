@@ -31,7 +31,7 @@ jobs:
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
-        uses: actions/checkout@dev
+        uses: actions/checkout@v4.0.0
         
       - name: Custom Action GET
         uses: ServiceNow/servicenow-devops-get-change@dev
@@ -49,7 +49,7 @@ jobs:
         run: echo "change-request-number = ${{ steps.get.outputs.change-request-number }}" >> $GITHUB_OUTPUT
          
       - name: Checkout
-        uses: actions/checkout@dev
+        uses: actions/checkout@v4.0.0
         
       - name: Custom Action UPDATE
         uses:  ServiceNow/servicenow-devops-update-change@dev
