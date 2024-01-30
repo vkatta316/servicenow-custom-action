@@ -11,8 +11,8 @@ jobs:
         uses: ServiceNow/servicenow-devops-change@dev
         id: create
         with:
-          devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
-          devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+          # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
+          # devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
@@ -39,8 +39,8 @@ jobs:
         # Uses an action in the root directory
         id: get
         with:
-          devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
-          devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+          # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
+          # devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           context-github: ${{ toJSON(github) }}
@@ -66,8 +66,8 @@ jobs:
         id: update
         with:
           change-request-number: ${{needs.custom_action_get_change.outputs.changeRequestNumber}}
-          devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
-          devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+          # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
+          # devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           context-github: ${{ toJSON(github) }}
