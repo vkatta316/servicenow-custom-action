@@ -127,7 +127,7 @@ jobs:
     needs: sonarScan
     steps:
       - name: ServiceNow DevOps Security Results
-        uses: ServiceNow/servicenow-devops-security-result@dev
+        uses: ServiceNow/servicenow-devops-security-result@main
         with:
             # DevOps Integration Token of GitHub tool created in ServiceNow instance for token based authentication.
             devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
