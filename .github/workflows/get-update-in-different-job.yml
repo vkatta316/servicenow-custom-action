@@ -47,8 +47,8 @@ jobs:
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           change-details: '{"build_number":"","pipeline_name":"","stage_name":"ServiceNow Change Approval"}' #Working Version
       
-      # - name: Output of GET change
-      #   run: echo "change-request-number = ${{ steps.get.outputs.change-request-number }}" >> $GITHUB_OUTPUT
+      - name: Output of GET change
+        run: echo "change-request-number = ${{ steps.get.outputs.change-request-number }}" >> $GITHUB_OUTPUT
         
   custom_action_update_change:
     needs: custom_action_get_change
