@@ -71,7 +71,7 @@ jobs:
           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           context-github: ${{ toJSON(github) }}
-          # tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           change-request-details: '{ "short_description":"Updated short_description abcdefghijklmnopqrstuvwxyz"}' #Working Version
       
       - name: Output of UPDATE change
