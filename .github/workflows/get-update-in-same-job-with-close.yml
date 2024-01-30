@@ -63,6 +63,7 @@ jobs:
           # devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
           change-request-details: '{ "work_notes":"Updated work_notes abcdefghijklmnopqrstuvwxyz","short_description":"Updated short_description abcdefghijklmnopqrstuvwxyz","description":"Updated description abcdefghijklmnopqrstuvwxyz", "close_code":"successful", "close_notes":"Updated close_notes abcdefghijklmnopqrstuvwxyz"}' #Working Version
       
