@@ -86,7 +86,7 @@ jobs:
                   "semanticVersion": "1.${{ github.run_number }}.0",
                   "repositoryName": "${{ github.repository }}"
               }
-          ]'
+           ]'
 
   sonarScan:
    name: 'Sonar Scan'
@@ -171,13 +171,13 @@ jobs:
                   "semanticVersion": "1.${{ github.run_number }}.0",
                   "repositoryName": "${{ github.repository }}"
               }
-          ]'
+           ]'
           # Name of the Package that contains list of artifacts
           package-name: 'app-devops-change-velocity-cicd.war'
           # Display Name of Job
           job-name: 'Register Package'
 
-   change:
+  change:
     name: Change Request
     runs-on: ubuntu-latest
     steps:     
@@ -204,7 +204,7 @@ jobs:
       - name: Run deployment scripts
         run: echo Completed Deployment. 
 
-   getchange:
+  getchange:
     # jobs that must complete successfully before this job will run
     needs: change
     # type of machine to run the job on
