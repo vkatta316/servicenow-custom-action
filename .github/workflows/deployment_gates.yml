@@ -200,7 +200,6 @@ jobs:
     name: Deploy
     needs: change
     runs-on: ubuntu-latest
-    needs: change
     environment: prod
     steps:
       - name: Run deployment scripts
