@@ -232,7 +232,7 @@ jobs:
           # Github Context
           context-github: ${{ toJSON(github) }}
           # The inputs to identify change at Servicenow and GET it.
-          change-details: '{"build_number":"${{github.run_id}}","pipeline_name":"${{github.repository}}/${{github.workflow}}","stage_name":"ServiceNow DevOps Change"}'
+          change-details: '{"build_number":"","pipeline_name":"","stage_name":"ServiceNow Change Approval"}'
 
       # - name: Output of ServiceNow DevOps Get Change
       #   run: echo 'Output of ServiceNow DevOps Get Change is -> change-request-number = ${{ steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
