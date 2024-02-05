@@ -182,7 +182,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:     
       - name: ServiceNow DevOps Change Attributes
-        uses: velivalab/servicenow-devops-change@depgate
+        uses: velivalab/servicenow-devops-change@dev
         with:
           devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
           devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
@@ -216,7 +216,7 @@ jobs:
       - name: ServiceNow DevOps Get Change
         # You may pin to the exact commit or the version.
         # uses: ServiceNow/servicenow-devops-get-change@0f8b1914adeaec764a4286bdd9cba73ed1c6097f
-        uses: ServiceNow/servicenow-devops-get-change@v3.1.0
+        uses: ServiceNow/servicenow-devops-get-change@dev
         id: get_change
         with:
           # ServiceNow Instance URL
@@ -245,7 +245,7 @@ jobs:
       - name: ServiceNow DevOps Update Change
         # You may pin to the exact commit or the version.
         # uses: ServiceNow/servicenow-devops-update-change@66d51cb13684d8287a763bc3f4dc4531c6ab3306
-        uses: ServiceNow/servicenow-devops-update-change@v3.1.0
+        uses: ServiceNow/servicenow-devops-update-change@dev
         id: update_change
         with:
           # ServiceNow Instance URL
