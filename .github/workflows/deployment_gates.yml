@@ -179,7 +179,7 @@ jobs:
 
   change:
     name: Change Request
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:     
       - name: ServiceNow DevOps Change Attributes
@@ -206,64 +206,64 @@ jobs:
       - name: Run deployment scripts
         run: echo Completed Deployment. 
 
-  getchange:
-    # jobs that must complete successfully before this job will run
-    needs: deploy
-    # type of machine to run the job on
-    runs-on: ubuntu-latest
-    name: 'ServiceNow DevOps Get Change'
-    outputs:
-      change-request-number: ${{ steps.get_change.outputs.change-request-number }}
-    steps:
-      - name: ServiceNow DevOps Get Change
-        # You may pin to the exact commit or the version.
-        # uses: ServiceNow/servicenow-devops-get-change@0f8b1914adeaec764a4286bdd9cba73ed1c6097f
-        uses: ServiceNow/servicenow-devops-get-change@dev
-        id: get_change
-        with:
-          # ServiceNow Instance URL
-          instance-url: ${{ secrets.SN_INSTANCE_URL }}
-          # Devops Integration Token
-          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-          # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-          # Orchestration Tool Id
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-          # Github Context
-          context-github: ${{ toJSON(github) }}
-          # The inputs to identify change at Servicenow and GET it.
-          change-details: '{"build_number":"","pipeline_name":"","stage_name":"Deploy"}'
+  # getchange:
+  #   # jobs that must complete successfully before this job will run
+  #   needs: deploy
+  #   # type of machine to run the job on
+  #   runs-on: ubuntu-latest
+  #   name: 'ServiceNow DevOps Get Change'
+  #   outputs:
+  #     change-request-number: ${{ steps.get_change.outputs.change-request-number }}
+  #   steps:
+  #     - name: ServiceNow DevOps Get Change
+  #       # You may pin to the exact commit or the version.
+  #       # uses: ServiceNow/servicenow-devops-get-change@0f8b1914adeaec764a4286bdd9cba73ed1c6097f
+  #       uses: ServiceNow/servicenow-devops-get-change@dev
+  #       id: get_change
+  #       with:
+  #         # ServiceNow Instance URL
+  #         instance-url: ${{ secrets.SN_INSTANCE_URL }}
+  #         # Devops Integration Token
+  #         devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+  #         # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+  #         # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+  #         # Orchestration Tool Id
+  #         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+  #         # Github Context
+  #         context-github: ${{ toJSON(github) }}
+  #         # The inputs to identify change at Servicenow and GET it.
+  #         change-details: '{"build_number":"","pipeline_name":"","stage_name":"Deploy"}'
 
-      # - name: Output of ServiceNow DevOps Get Change
-      #   run: echo 'Output of ServiceNow DevOps Get Change is -> change-request-number = ${{ steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
+  #     # - name: Output of ServiceNow DevOps Get Change
+  #     #   run: echo 'Output of ServiceNow DevOps Get Change is -> change-request-number = ${{ steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
 
-  updatechange:
-    # jobs that must complete successfully before this job will run
-    needs: getchange
-    # type of machine to run the job on
-    runs-on: ubuntu-latest
-    name: 'ServiceNow DevOps Update Change'
-    steps:
-      - name: ServiceNow DevOps Update Change
-        # You may pin to the exact commit or the version.
-        # uses: ServiceNow/servicenow-devops-update-change@66d51cb13684d8287a763bc3f4dc4531c6ab3306
-        uses: ServiceNow/servicenow-devops-update-change@dev
-        id: update_change
-        with:
-          # ServiceNow Instance URL
-          instance-url: ${{ secrets.SN_INSTANCE_URL }}
-          # ServiceNow Devops security token
-          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-          # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-          # Orchestration Tool Id of the tool created in ServiceNow
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-          # Github Context
-          context-github: ${{ toJSON(github) }}
-          # Change Request Number to be Updated
-          change-request-number: ${{needs.getchange.outputs.change-request-number}}
-          # The customized inputs to create change with the requested details.
-          change-request-details: '{"state":"3","close_code":"successful_issues","close_notes":"Test results successful"}'
+  # updatechange:
+  #   # jobs that must complete successfully before this job will run
+  #   needs: getchange
+  #   # type of machine to run the job on
+  #   runs-on: ubuntu-latest
+  #   name: 'ServiceNow DevOps Update Change'
+  #   steps:
+  #     - name: ServiceNow DevOps Update Change
+  #       # You may pin to the exact commit or the version.
+  #       # uses: ServiceNow/servicenow-devops-update-change@66d51cb13684d8287a763bc3f4dc4531c6ab3306
+  #       uses: ServiceNow/servicenow-devops-update-change@dev
+  #       id: update_change
+  #       with:
+  #         # ServiceNow Instance URL
+  #         instance-url: ${{ secrets.SN_INSTANCE_URL }}
+  #         # ServiceNow Devops security token
+  #         devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+  #         # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+  #         # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+  #         # Orchestration Tool Id of the tool created in ServiceNow
+  #         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+  #         # Github Context
+  #         context-github: ${{ toJSON(github) }}
+  #         # Change Request Number to be Updated
+  #         change-request-number: ${{needs.getchange.outputs.change-request-number}}
+  #         # The customized inputs to create change with the requested details.
+  #         change-request-details: '{"state":"3","close_code":"successful_issues","close_notes":"Test results successful"}'
           
-      # - name: Outcome of ServiceNow DevOps Update Change
-      #   run: echo 'Outcome of ServiceNow DevOps Update Change is -> ${{ steps.update_change.outputs.status }}'  >> $GITHUB_OUTPUT       
+  #     # - name: Outcome of ServiceNow DevOps Update Change
+  #     #   run: echo 'Outcome of ServiceNow DevOps Update Change is -> ${{ steps.update_change.outputs.status }}'  >> $GITHUB_OUTPUT       
