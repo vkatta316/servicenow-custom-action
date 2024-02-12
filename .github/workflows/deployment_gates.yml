@@ -58,7 +58,7 @@ jobs:
           # if both JUnit & TestNG tests, use target/surefire-reports/testng-junit-results/testng-results.xml
 
   # registerArtifact:
-  #   name: 'Register Artifact'
+  #   name: 'RegisterArtifact'
   #   needs: test
   #   runs-on: ubuntu-latest
   #   steps:
