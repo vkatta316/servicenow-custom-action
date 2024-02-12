@@ -57,7 +57,7 @@ jobs:
           xml-report-filename: target/ # if only JUnit tests, use target/surefire-reports/testng-results.xml
           # if both JUnit & TestNG tests, use target/surefire-reports/testng-junit-results/testng-results.xml
 
-  # registerArtifact:
+  # register Artifact:
   #   name: 'RegisterArtifact'
   #   needs: test
   #   runs-on: ubuntu-latest
