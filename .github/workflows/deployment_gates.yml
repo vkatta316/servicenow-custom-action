@@ -88,34 +88,34 @@ jobs:
   #             }
   #          ]'
 
-  # sonarScan:
-  #  name: 'Sonar Scan'
-  #  needs: registerArtifact
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #  - name: Checkout
-  #    uses: actions/checkout@v4.0.0
+  sonarScan:
+   name: 'Sonar Scan'
+   needs: test
+   runs-on: ubuntu-latest
+   steps:
+   - name: Checkout
+     uses: actions/checkout@v4.0.0
   
-  #  - name: ServiceNow DevOps Sonar Scan Results
-  #  # You may pin to the exact commit or the version.     
-  #    uses: ServiceNow/servicenow-devops-sonar@dev
-  #    with:
-  #        # ServiceNow Instance URL
-  #        instance-url: ${{ secrets.SN_INSTANCE_URL }}
-  #        # Devops Integration Token
-  #        # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-  #        # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-  #        devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-  #        # Orchestration Tool Id
-  #        tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-  #        # Github Context
-  #        context-github: ${{ toJSON(github) }}
-  #        # Display Name of the Job
-  #        job-name: 'Sonar Scan'
-  #        # Sonar Host URL
-  #        sonar-host-url: ${{ secrets.SONAR_URL }}
-  #        # Sonar Project Key
-  #        sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
+   - name: ServiceNow DevOps Sonar Scan Results
+   # You may pin to the exact commit or the version.     
+     uses: ServiceNow/servicenow-devops-sonar@dev
+     with:
+         # ServiceNow Instance URL
+         instance-url: ${{ secrets.SN_INSTANCE_URL }}
+         # Devops Integration Token
+         # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+         # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+         devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+         # Orchestration Tool Id
+         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+         # Github Context
+         context-github: ${{ toJSON(github) }}
+         # Display Name of the Job
+         job-name: 'Sonar Scan'
+         # Sonar Host URL
+         sonar-host-url: ${{ secrets.SONAR_URL }}
+         # Sonar Project Key
+         sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
 
   # ServiceNowSecurityScanResults:
   #   # type of machine to run the job on
@@ -179,7 +179,7 @@ jobs:
 
   change:
     name: Change Request
-    needs: test
+    needs: sonarScan
     runs-on: ubuntu-latest
     steps:     
       - name: ServiceNow DevOps Change Attributes
