@@ -90,7 +90,7 @@ jobs:
 
   sonarScan:
    name: 'Sonar Scan'
-   needs: test
+   needs: register Artifact
    runs-on: ubuntu-latest
    steps:
    - name: Checkout
@@ -146,7 +146,7 @@ jobs:
 
   registerPackage:
     name: 'Register Package'
-    needs: [sonarScan]
+    needs: [ServiceNowSecurityScanResults]
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Package
@@ -199,7 +199,7 @@ jobs:
         
   deploy:
     name: Deploy
-    needs: change
+    needs: registerPackage
     runs-on: ubuntu-latest
     environment: prod
     steps:
