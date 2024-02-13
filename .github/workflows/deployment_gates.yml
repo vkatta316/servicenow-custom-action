@@ -141,7 +141,7 @@ jobs:
   #           security-result-attributes: '{"scanner": "Veracode", "applicationName": "10kflaws-72"}'
             # scanner: Scanning tool and is required e.g. Veracode.
             # applicationName: Name of your Veracode application and is required. This attribute is applicable only for Veracode.
-            # buildVersion: Veracode Scan name / build version and is optional. This attribute is applicable only for Veracode.
+            # buildVersion: Veracode Scan name /build version and is optional. This attribute is applicable only for Veracode.
             # securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 
   # registerPackage:
