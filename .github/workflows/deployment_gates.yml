@@ -207,7 +207,7 @@ jobs:
         run: echo Completed Deployment. 
 
   # getchange:
-  #   # jobs that must complete successfully before this job will run
+  #   # jobs that  must complete successfully before this job will run
   #   needs: deploy
   #   # type of machine to run the job on
   #   runs-on: ubuntu-latest
