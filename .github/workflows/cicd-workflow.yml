@@ -287,10 +287,10 @@ jobs:
       # - name: Outcome of ServiceNow DevOps Update Change
       #   run: echo 'Outcome of ServiceNow DevOps Update Change is -> ${{ steps.update_change.outputs.status }}'  >> $GITHUB_OUTPUT
  
-  deploy:
-    name: 'Deploy'
-    needs: updatechange
-    runs-on: ubuntu-latest
-    steps:
-    - name: Run deployment scripts
-      run: echo 'Deployment step in progress...'
+  # deploy:
+  #   name: 'Deploy'
+  #   needs: updatechange
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Run deployment scripts
+  #     run: echo 'Deployment step in progress...'
