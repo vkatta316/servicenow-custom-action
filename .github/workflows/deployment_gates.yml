@@ -199,7 +199,7 @@ jobs:
         
   deploy:
     name: Deploy
-    needs: registerPackage
+    needs: change
     runs-on: ubuntu-latest
     environment: prod
     steps:
