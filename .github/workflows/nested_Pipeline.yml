@@ -1,4 +1,4 @@
-name: Parallel and Conditional Jobs
+name: Nested Pipeline workflow
 
 on: workflow_dispatch
 
