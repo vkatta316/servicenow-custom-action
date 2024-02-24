@@ -198,16 +198,16 @@ jobs:
           change-request: '{"setCloseCode":"true","attributes":{"short_description":"Automated Software Deployment","chg_model":"adffaa9e4370211072b7f6be5bb8f2ed","description":"Automated Software Deployment.","assignment_group":"a715cd759f2002002920bde8132e7018","implementation_plan":"Software update is tested and results can be found in Test Summaries Tab; When the change is approved the implementation happens automated by the CICD pipeline within the change planned start and end time window.","backout_plan":"When software fails in production, the previous software release will be re-deployed.","test_plan":"Testing if the software was successfully deployed"}}'
           interval: '100'
           timeout: '3600'
-          deployment-gate: '{"environment":"prod","jobName":"Deploy"}'
+          # deployment-gate: '{"environment":"prod","jobName":"Deploy"}'
         
-  deploy:
-    name: 'Deploy'
-    needs: change
-    runs-on: ubuntu-latest
-    environment: prod
-    steps:
-      - name: Run deployment scripts
-        run: echo Completed Deployment. 
+  # deploy:
+  #   name: 'Deploy'
+  #   needs: change
+  #   runs-on: ubuntu-latest
+  #   environment: prod
+  #   steps:
+  #     - name: Run deployment scripts
+  #       run: echo Completed Deployment. 
 
   getchange:
     # jobs that  must complete successfully before this job will run
