@@ -1,5 +1,4 @@
  # This workflow uses ServiceNow custom actions that are certified by ServiceNow.
-
 name: CICD GitHub workflow
 on: workflow_dispatch
   # push:
