@@ -135,7 +135,7 @@ jobs:
     # type of machine to run the job on
     runs-on: ubuntu-latest
     name: ServiceNow Security Scan Results
-    needs: [test,sonarScan]
+    needs: [test]
     steps:
       - name: ServiceNow DevOps Security Results
         uses: ServiceNow/servicenow-devops-security-result@dev
@@ -160,7 +160,7 @@ jobs:
 
   registerPackage:
     name: 'Register Package'
-    needs: [sonarScan]
+    needs: [test,ServiceNowSecurityScanResults,sonarScan]
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Package
