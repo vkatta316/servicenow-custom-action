@@ -199,7 +199,7 @@ jobs:
 
   change:
     name: Change Request
-    needs: test
+    needs: registerPackage
     runs-on: ubuntu-latest
     steps:     
       - name: ServiceNow DevOps Change Attributes
