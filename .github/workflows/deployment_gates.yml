@@ -160,7 +160,7 @@ jobs:
 
   registerPackage:
     name: 'Register Package'
-    needs: [test,ServiceNowSecurityScanResults,sonarScan]
+    needs: [registerArtifact,ServiceNowSecurityScanResults,sonarScan]
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Package
