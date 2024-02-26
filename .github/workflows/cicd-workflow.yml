@@ -110,7 +110,7 @@ jobs:
 
   sonarScan:
    name: 'Sonar Scan'
-   needs: registerArtifact
+   needs: test
    runs-on: ubuntu-latest
    steps:
    - name: Checkout
