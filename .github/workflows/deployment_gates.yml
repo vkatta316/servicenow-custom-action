@@ -1,6 +1,6 @@
 name: Deployment Gates workflow
 on: workflow_dispatch
-  # push:
+  # push: 
   #   branches:[ "main" ]
   # pull_requ est:
   #   branches: [ "main" ] 
