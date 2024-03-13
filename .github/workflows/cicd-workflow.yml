@@ -179,6 +179,7 @@ jobs:
           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
           # ServiceNow Instance URL
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          
           # Orchestration Tool Id of the tool created in ServiceNow
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           # Github Context
