@@ -43,10 +43,10 @@ jobs:
     needs: registerPackage
     # type of machine to run the job on
     runs-on: ubuntu-latest
-    run: sleep 180s
     name: 'ServiceNow DevOps Change'
     steps:
       - name: ServiceNow Change
+        run: sleep 180s
         uses: ServiceNow/servicenow-devops-change@dev
         with:
           # Devops Integration Token
