@@ -45,8 +45,10 @@ jobs:
     runs-on: ubuntu-latest
     name: 'ServiceNow DevOps Change'
     steps:
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
       - name: ServiceNow Change
-        run: sleep 180s
         uses: ServiceNow/servicenow-devops-change@dev
         with:
           # Devops Integration Token
