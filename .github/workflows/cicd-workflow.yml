@@ -42,7 +42,7 @@ jobs:
           # Devops Integration Token
           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
           # ServiceNow Instance Name
-          instance-url: ${{ secrets.SN_INSTANCE_NAME }}
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
           # Orchestration Tool Id
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           # Job Name
