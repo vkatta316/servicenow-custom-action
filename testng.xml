@@ -7,7 +7,7 @@
     </groups>
     <test started-at="2023-05-27T11:00:59 IST" name="Test" finished-at="2023-05-27T11:00:59 IST" duration-ms="369">
       <class name="com.test.secondTest">
-        <test-method signature="test2()[pri:0, instance:com.test.secondTest@3276732]" started-at="2023-05-27T11:00:59 UTC" name="test2" finished-at="2023-05-27T11:00:59 UTC" duration-ms="107" status="PASS">
+        <test-method signature="test2()[pri:0, instance:com.test.secondTest@3276732]" started-at="2023-05-27T11:00:59 IST" name="test2" finished-at="2023-05-27T11:00:59 IST" duration-ms="107" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- test2 -->
