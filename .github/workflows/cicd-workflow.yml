@@ -96,7 +96,7 @@ jobs:
 
   registerArtifact:
     name: 'RegisterArtifact'
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Artifact
