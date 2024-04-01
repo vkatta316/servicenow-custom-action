@@ -39,12 +39,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v4.0.0
+      uses: actions/checkout@v3.1.0
         
     - name: Run Tests with Maven
       run: mvn -B test --file pom.xml
     - name: ServiceNow DevOps Unit Test Results            
-      uses: ServiceNow/servicenow-devops-test-report@dev
+      uses: ServiceNow/servicenow-devops-test-report@v3.1.0
       with:
           # Devops Integration Token
           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
@@ -145,7 +145,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v4.0.0
+      uses: actions/checkout@v3.1.0
 
     - name: ServiceNow DevOps Security Results
       uses: ServiceNow/servicenow-devops-security-result@v3.1.0
