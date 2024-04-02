@@ -28,7 +28,7 @@ jobs:
 
   test:
     name: 'Test'
-    needs: build1
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
