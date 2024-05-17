@@ -9,7 +9,7 @@ on: workflow_dispatch
   #   branches: [ "main" ]
   #   types: [opened, synchronize,reopened]
 
-# on:
+# on: 
 #   schedule:
 #     - cron: '*/2 * * * *'
 
