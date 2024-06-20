@@ -131,7 +131,7 @@ jobs:
    runs-on: ubuntu-latest
    steps:
    - name: Checkout
-     uses: actions/checkout@v4.0.0
+     uses: actions/checkout@dev
   
    - name: ServiceNow DevOps Sonar Scan Results
    # You may pin to the exact commit or the version.     
@@ -158,7 +158,7 @@ jobs:
     # type of machine to run the job on
     runs-on: ubuntu-latest
     name: ServiceNow Security Scan Results
-    needs: registerArtifact
+    needs: sonarScan
     steps:
       - name: ServiceNow DevOps Security Results
         uses: ServiceNow/servicenow-devops-security-result@dev
