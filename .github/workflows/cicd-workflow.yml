@@ -230,7 +230,7 @@ jobs:
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
           job-name: 'Change Request'
-          change-request: '{"autoCloseChange":true,"attributes":{"short_description":"Automated Software Deployment","chg_model":"007c4001c343101035ae3f52c1d3aeb2","description":"Automated Test Software Deployment.","assignment_group":"a715cd759f2002002920bde8132e7018","implementation_plan":"Software update is tested and results can be found in Test Summaries Tab; When the change is approved the implementation happens automated by the CICD pipeline within the change planned start and end time window.","backout_plan":"When software fails in production, the previous software release will be re-deployed.","test_plan":"Testing if the software was successfully deployed"}}'
+          change-request: '{"autoCloseChange":true,"attributes":{"short_description":"Automated Software Deployment","chg_model":"adffaa9e4370211072b7f6be5bb8f2ed","description":"Automated Test Software Deployment.","assignment_group":"a715cd759f2002002920bde8132e7018","implementation_plan":"Software update is tested and results can be found in Test Summaries Tab; When the change is approved the implementation happens automated by the CICD pipeline within the change planned start and end time window.","backout_plan":"When software fails in production, the previous software release will be re-deployed.","test_plan":"Testing if the software was successfully deployed"}}'
           interval: '100'
           timeout: '3600'
           # changeCreationTimeOut: ;'1000'
@@ -263,9 +263,9 @@ jobs:
           # ServiceNow Instance URL
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           # Devops Integration Token
-          # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-          devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+          # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
           # Orchestration Tool Id
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           # Github Context
@@ -292,9 +292,9 @@ jobs:
           # ServiceNow Instance URL
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           # ServiceNow Devops security token
-          # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-          devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+          # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
           # Orchestration Tool Id of the tool created in ServiceNow
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           # Github Context
