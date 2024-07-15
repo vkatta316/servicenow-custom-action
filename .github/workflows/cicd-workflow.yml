@@ -52,7 +52,7 @@ jobs:
           # Github Context
           context-github: ${{ toJSON(github) }}
           # JUnit xml report file name with path
-          xml-report-filename: .github/workflows/NunitFolder/NUnit.xml
+          xml-report-filename: testng.xml
         
     # - name: Run Tests with Maven
     #   run: mvn -B test --file pom.xml
@@ -96,7 +96,7 @@ jobs:
 
   registerArtifact:
     name: 'RegisterArtifact'
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Artifact
@@ -183,7 +183,7 @@ jobs:
 
   registerPackage:
     name: 'Register Package'
-    needs: [registerArtifact]
+    needs: [sonarScan]
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Package
