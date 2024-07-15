@@ -5,17 +5,17 @@
   <suite started-at="2023-05-27T11:00:59 IST" name="Suite" finished-at="2023-05-27T11:00:59 IST" duration-ms="369">
     <groups>
     </groups>
-<!--     <test started-at="2023-05-27T11:00:59 IST" name="Test" finished-at="2023-05-27T11:00:59 IST" duration-ms="369">
+    <test started-at="2023-05-27T11:00:59 IST" name="Test" finished-at="2023-05-27T11:00:59 IST" duration-ms="369">
       <class name="com.test.secondTest">
         <test-method signature="test2()[pri:0, instance:com.test.secondTest@3276732]" started-at="2023-05-27T11:00:59 IST" name="test2" finished-at="2023-05-27T11:00:59 IST" duration-ms="107" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- test2 -->
-<!--         <test-method signature="testAdd()[pri:0, instance:com.test.secondTest@3276732]" started-at="2023-05-27T11:00:59 IST" name="testAdd" finished-at="2023-05-27T11:00:59 IST" duration-ms="3" status="PASS">
+       <test-method signature="testAdd()[pri:0, instance:com.test.secondTest@3276732]" started-at="2023-05-27T11:00:59 IST" name="testAdd" finished-at="2023-05-27T11:00:59 IST" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testAdd -->
-<!--       </class> <!-- com.test.secondTest -->
-<!--     </test> <!-- Test -->
+      </class> com.test.secondTest
+    </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>
