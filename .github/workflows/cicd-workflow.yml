@@ -29,30 +29,30 @@ jobs:
     - name: Build with Maven
       run: mvn clean compile
 
-  # test:
-  #   name: 'Test'
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v2
-  #     - name: ServiceNow DevOps Unit Test Results
-  #       uses: ServiceNow/servicenow-devops-test-report@main
-  #       with:
-  #         # Devops Integration Token
-  #         # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
-  #         # devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
-  #         devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-  #         # ServiceNow Instance Name
-  #         instance-url: ${{ secrets.SN_INSTANCE_URL }}
-  #         # Orchestration Tool Id
-  #         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-  #         # Job Name
-  #         job-name: 'Test' # Should be same name as declared in 'name' clause of the current Stage
-  #         # Github Context
-  #         context-github: ${{ toJSON(github) }}
-  #         # JUnit xml report file name with path
-  #         xml-report-filename: testng.xml
+  test:
+    name: 'Test'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: ServiceNow DevOps Unit Test Results
+        uses: ServiceNow/servicenow-devops-test-report@main
+        with:
+          # Devops Integration Token
+          # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
+          # devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          # ServiceNow Instance Name
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          # Orchestration Tool Id
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          # Job Name
+          job-name: 'Test' # Should be same name as declared in 'name' clause of the current Stage
+          # Github Context
+          context-github: ${{ toJSON(github) }}
+          # JUnit xml report file name with path
+          xml-report-filename: testng.xml
         
     # - name: Run Tests with Maven
     #   run: mvn -B test --file pom.xml
@@ -96,7 +96,7 @@ jobs:
 
   registerArtifact:
     name: 'RegisterArtifact'
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Artifact
