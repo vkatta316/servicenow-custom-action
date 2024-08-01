@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v4.0.0
         
       - name: Custom Action GET
-        uses: ServiceNow/servicenow-devops-get-change@dev
+        uses: ServiceNow/servicenow-devops-get-change@4.0.0
         # Uses an action in the root directory
         id: get
         with:
