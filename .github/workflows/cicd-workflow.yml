@@ -40,8 +40,8 @@ jobs:
         uses: ServiceNow/servicenow-devops-test-report@main
         with:
           # Devops Integration Token
-          devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
-          devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+          # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
+          # devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
           # ServiceNow Instance Name
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
