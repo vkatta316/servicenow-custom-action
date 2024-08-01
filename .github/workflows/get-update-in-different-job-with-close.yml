@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest   
     steps:     
       - name: ServiceNow Change Approval
-        uses: ServiceNow/servicenow-devops-change@main
+        uses: ServiceNow/servicenow-devops-change@v4.0.0
         id: create
         with:
           devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v4.0.0
         
       - name: ServiceNow Get Change
-        uses: ServiceNow/servicenow-devops-get-change@main
+        uses: ServiceNow/servicenow-devops-get-change@v3.1.0
         # Uses an action in the root directory
         id: get
         with:
