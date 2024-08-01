@@ -305,5 +305,5 @@ jobs:
           # The customized inputs to create change with the requested details.
           change-request-details: '{"state":"3","close_code":"successful_issues","close_notes":"Test results successful"}'
           
-      # - name: Outcome of ServiceNow DevOps Update Change
+      # - name: Outcome of  ServiceNow DevOps Update Change
       #   run: echo 'Outcome of ServiceNow DevOps Update Change is -> ${{ steps.update_change.outputs.status }}'  >> $GITHUB_OUTPUT       
