@@ -1,4 +1,4 @@
-name: GET-UPDATE in different jobs
+name: GET-UPDATE in different jobs 
 on: 
   workflow_dispatch:
 
