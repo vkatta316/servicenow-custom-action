@@ -1,4 +1,4 @@
- # This workflow uses ServiceNow custom actions that are certified by ServiceNow. Testing the pipeline test
+ # This workflow uses ServiceNow custom actions that are certified by ServiceNow. Testing the pipeline test. check the IB
 
 
 name: CICD GitHub workflow 
