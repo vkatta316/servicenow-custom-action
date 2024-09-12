@@ -3,7 +3,7 @@ on: workflow_dispatch
   # push: 
   #   branches:[ "main" ]
   # pull_requ est:
-  #   branches: [ "main" ] 
+  #   branches: [ "main" ]  
   #   types: [opened,synchronize,reopened] 
 
 # on:
