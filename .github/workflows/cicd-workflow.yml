@@ -51,7 +51,8 @@ jobs:
           jf rt dl tf-trial/workspaces/jfrog-ws1/README.md ./ 
           jf rt bp
   build:
-    name: 'Build'  
+    name: 'Build' 
+    needs: jFrog
     runs-on: ubuntu-latest
 
     steps:
