@@ -258,7 +258,7 @@ jobs:
           # Display Name of Job
           job-name: 'Register Package'
 
-  change:
+   change:
     name: Change Request
     needs: registerPackage
     runs-on: ubuntu-latest
