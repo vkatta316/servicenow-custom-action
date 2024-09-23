@@ -15,7 +15,6 @@ on: workflow_dispatch
 
 #RC1
 #RC2
-#RC3
 jobs: 
   # jFrog:
   #  runs-on: ubuntu-latest
