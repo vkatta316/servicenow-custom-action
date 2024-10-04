@@ -14,7 +14,6 @@ on: workflow_dispatch
 #     - cron: '*/2 * * * *' 
 
 #RC1
-#RC2
 jobs: 
   # jFrog:
   #  runs-on: ubuntu-latest
