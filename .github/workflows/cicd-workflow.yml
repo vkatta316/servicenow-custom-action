@@ -98,7 +98,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: ServiceNow DevOps Unit Test Results            
+      - name: ServiceNow DevOps Unit Test Results for unit test          
         uses: ServiceNow/servicenow-devops-test-report@v4.1.0
         with:
           # # Devops Integration Token
