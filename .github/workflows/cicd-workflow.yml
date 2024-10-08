@@ -92,7 +92,7 @@ jobs:
         
 
   test2:
-    name: 'Test'
+    name: 'Test2'
     needs: test
     runs-on: ubuntu-latest
     steps:
