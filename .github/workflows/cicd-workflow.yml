@@ -93,7 +93,7 @@ jobs:
 
   test2:
     name: 'Test'
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -121,7 +121,7 @@ jobs:
 
   registerArtifact:
     name: 'RegisterArtifact'
-    needs: test
+    needs: test2
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Artifact
