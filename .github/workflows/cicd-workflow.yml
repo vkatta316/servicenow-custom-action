@@ -121,7 +121,7 @@ jobs:
 
   registerArtifact:
     name: 'RegisterArtifact'
-    needs: test2
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Artifact
@@ -208,7 +208,7 @@ jobs:
 
   registerPackage:
     name: 'Register Package'
-    needs: [sonarScan]
+    needs: [ServiceNowSecurityScanResults]
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Package
