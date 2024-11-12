@@ -76,9 +76,9 @@ jobs:
         uses: ServiceNow/servicenow-devops-test-report@v4.1.0
         with:
           # Devops Integration Token
-          # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
-          # devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
-          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
+          devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+          # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
           # ServiceNow Instance Name
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           # Orchestration Tool Id
@@ -248,9 +248,9 @@ jobs:
       - name: ServiceNow DevOps Change Attributes
         uses: ServiceNow/servicenow-devops-change@v4.1.0
         with:
-          # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
-          # devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
-          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
+          devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+          # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
@@ -289,9 +289,9 @@ jobs:
           # ServiceNow Instance URL
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           # Devops Integration Token
-          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-          # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+          # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+          devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
           # Orchestration Tool Id
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           # Github Context
@@ -318,9 +318,9 @@ jobs:
           # ServiceNow Instance URL
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           # ServiceNow Devops security token
-          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-          # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+          # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+          devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
           # Orchestration Tool Id of the tool created in ServiceNow
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           # Github Context
