@@ -4,7 +4,7 @@
 name: CICD GitHub workflow 
 on:
   pull_request:
-    types: [opened, reopened,merge synchronize]
+    types: [opened, reopened, merged, closed, synchronize]
     branches:
       - master
       - main
