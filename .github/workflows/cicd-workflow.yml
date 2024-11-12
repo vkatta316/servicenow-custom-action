@@ -2,13 +2,13 @@
 
 
 name: CICD GitHub workflow 
-on: workflow_dispatch
-  # push:  
-  #  branches:  ["main" ]
-  # pull_request:
-  #   branches: [ "main" ] 
-  #   types: [opened, synchronize,reopened]
- 
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - master
+      - main
+      - test03
 # on: 
 #   schedule:
 #     - cron: '*/2 * * * *' 
