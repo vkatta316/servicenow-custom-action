@@ -4,7 +4,7 @@ on:
     types: [opened, reopened, merged, closed, synchronize]
     branches:
       - master
-      - main
+      - main 
       - test03
 
 # on:
