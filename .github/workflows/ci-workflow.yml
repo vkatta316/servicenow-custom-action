@@ -167,7 +167,7 @@ jobs:
     name: 'ServiceNow DevOps Change'
     steps:
       - name: Sleep for 30 seconds
-        run: sleep 360s
+        run: sleep 10s
         shell: bash
       - name: ServiceNow Change
         uses: ServiceNow/servicenow-devops-change@dev
