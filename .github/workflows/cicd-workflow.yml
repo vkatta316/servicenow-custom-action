@@ -313,6 +313,7 @@ jobs:
     # type of machine to run the job on
     runs-on: ubuntu-latest
     name: 'ServiceNow DevOps Update Change'
+    if: always()
     steps:
       - name: ServiceNow DevOps Update Change
         # You may pin to the exact commit or the version.
