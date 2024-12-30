@@ -212,7 +212,6 @@ jobs:
 
   registerPackage:
     name: 'Register Package'
-    if: always()
     needs: [sonarScan]
     runs-on: ubuntu-latest
     steps:
@@ -247,6 +246,7 @@ jobs:
 
   change:
     name: Change Request
+    if: always()
     needs: registerPackage
     runs-on: ubuntu-latest
     steps:     
