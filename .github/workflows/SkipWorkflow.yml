@@ -1,0 +1,35 @@
+name: Simple Pipeline with Skipped Step
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 3: Run Snyk Security Scan (skipped for pull requests)
+      - name: Run Snyk Security Scan
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          npm install -g snyk
+          snyk test
+
+      # Step 4: Build the project
+      - name: Build Project
+        run: npm run build
+
+      # Step 5: Run tests
+      - name: Run Tests
+        run: npm test
