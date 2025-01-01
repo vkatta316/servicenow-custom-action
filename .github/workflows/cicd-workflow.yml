@@ -281,6 +281,7 @@ jobs:
     needs: change
     # type of machine to run the job on
     runs-on: ubuntu-latest
+    if: always()
     name: 'ServiceNow DevOps Get Change'
     outputs:
       change-request-number: ${{ steps.get_change.outputs.change-request-number }}
