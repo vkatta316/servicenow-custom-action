@@ -52,45 +52,45 @@ jobs:
   #    run: |
   #         jf rt dl tf-trial/workspaces/jfrog-ws1/README.md ./ 
   #         jf rt bp
-  build:
-    name: 'Build' 
-    runs-on: ubuntu-latest
+  # build:
+  #   name: 'Build' 
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn clean compile
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Set up JDK 11
+  #     uses: actions/setup-java@v3
+  #     with:
+  #       java-version: '11'
+  #       distribution: 'temurin'
+  #       cache: maven
+  #   - name: Build with Maven
+  #     run: mvn clean compile
 
-  test:
-    name: 'Test'
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: ServiceNow DevOps Unit Test Results
-        uses: ServiceNow/servicenow-devops-test-report@v4.1.0
-        with:
-          # Devops Integration Token
-          devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
-          devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
-          # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          # ServiceNow Instance Name
-          instance-url: ${{ secrets.SN_INSTANCE_URL }}
-          # Orchestration Tool Id
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-          # Job Name
-          job-name: 'Test' # Should be same name as declared in 'name' clause of the current Stage
-          # Github Context
-          context-github: ${{ toJSON(github) }}
-          # JUnit xml report file name with path
-          xml-report-filename: testng.xml
+  # test:
+  #   name: 'Test'
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #     - name: ServiceNow DevOps Unit Test Results
+  #       uses: ServiceNow/servicenow-devops-test-report@v4.1.0
+  #       with:
+  #         # Devops Integration Token
+  #         devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
+  #         devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+  #         # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+  #         # ServiceNow Instance Name
+  #         instance-url: ${{ secrets.SN_INSTANCE_URL }}
+  #         # Orchestration Tool Id
+  #         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+  #         # Job Name
+  #         job-name: 'Test' # Should be same name as declared in 'name' clause of the current Stage
+  #         # Github Context
+  #         context-github: ${{ toJSON(github) }}
+  #         # JUnit xml report file name with path
+  #         xml-report-filename: testng.xml
         
 
   # test2:
@@ -121,66 +121,66 @@ jobs:
 
    
 
-  registerArtifact:
-    name: 'RegisterArtifact'
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - name: ServiceNow DevOps Register Artifact
-    # You may pin to the exact commit or the version.          
-      uses: ServiceNow/servicenow-devops-register-artifact@v3.1.0
-      with:
-          # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-          # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-          # Devops Integration Token
-          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          # ServiceNow Instance URL
-          instance-url: ${{ secrets.SN_INSTANCE_URL }}
-          # Orchestration Tool Id
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-          # Display Name of the Job
-          job-name: 'Register Artifact'
-          # Github Context
-          context-github: ${{ toJSON(github) }}
-          # List of Artifacts to be registered
-          artifacts: '[
-             {
-                  "name": "app-devops-cicd.jar",
-                  "version": "1.${{ github.run_number }}",
-                  "semanticVersion": "1.${{ github.run_number }}.0",
-                  "repositoryName": "${{ github.repository }}"
-              }
-           ]'
+  # registerArtifact:
+  #   name: 'RegisterArtifact'
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: ServiceNow DevOps Register Artifact
+  #   # You may pin to the exact commit or the version.          
+  #     uses: ServiceNow/servicenow-devops-register-artifact@v3.1.0
+  #     with:
+  #         # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+  #         # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+  #         # Devops Integration Token
+  #         devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+  #         # ServiceNow Instance URL
+  #         instance-url: ${{ secrets.SN_INSTANCE_URL }}
+  #         # Orchestration Tool Id
+  #         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+  #         # Display Name of the Job
+  #         job-name: 'Register Artifact'
+  #         # Github Context
+  #         context-github: ${{ toJSON(github) }}
+  #         # List of Artifacts to be registered
+  #         artifacts: '[
+  #            {
+  #                 "name": "app-devops-cicd.jar",
+  #                 "version": "1.${{ github.run_number }}",
+  #                 "semanticVersion": "1.${{ github.run_number }}.0",
+  #                 "repositoryName": "${{ github.repository }}"
+  #             }
+  #          ]'
 
-  sonarScan:
-   name: 'Sonar Scan'
-   # if: ${{ github.ref != 'refs/heads/main' }}
-   needs: registerArtifact
-   runs-on: ubuntu-latest
-   steps:
-   - name: Checkout
-     uses: actions/checkout@v3.1.0
+  # sonarScan:
+  #  name: 'Sonar Scan'
+  #  # if: ${{ github.ref != 'refs/heads/main' }}
+  #  needs: registerArtifact
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #  - name: Checkout
+  #    uses: actions/checkout@v3.1.0
   
-   - name: ServiceNow DevOps Sonar Scan Results
-   # You may pin to the exact commit or the version.     
-     uses: ServiceNow/servicenow-devops-sonar@v3.1.0
-     with:
-         # ServiceNow Instance URL
-         instance-url: ${{ secrets.SN_INSTANCE_URL }}
-         # Devops Integration Token
-         # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-         # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-         devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-         # Orchestration Tool Id
-         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-         # Github Context
-         context-github: ${{ toJSON(github) }}
-         # Display Name of the Job
-         job-name: 'Sonar Scan'
-         # Sonar Host URL
-         sonar-host-url: ${{ secrets.SONAR_URL }}
-         # Sonar Project Key
-         sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
+  #  - name: ServiceNow DevOps Sonar Scan Results
+  #  # You may pin to the exact commit or the version.     
+  #    uses: ServiceNow/servicenow-devops-sonar@v3.1.0
+  #    with:
+  #        # ServiceNow Instance URL
+  #        instance-url: ${{ secrets.SN_INSTANCE_URL }}
+  #        # Devops Integration Token
+  #        # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+  #        # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+  #        devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+  #        # Orchestration Tool Id
+  #        tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+  #        # Github Context
+  #        context-github: ${{ toJSON(github) }}
+  #        # Display Name of the Job
+  #        job-name: 'Sonar Scan'
+  #        # Sonar Host URL
+  #        sonar-host-url: ${{ secrets.SONAR_URL }}
+  #        # Sonar Project Key
+  #        sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
 
   # ServiceNowSecurityScanResults:
   #   # type of machine to run the job on
@@ -210,44 +210,44 @@ jobs:
   #           buildVersion: Veracode Scan name /build version and is optional. This attribute is applicable only for Veracode.
   #           securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 
-  registerPackage:
-    name: 'Register Package'
-    needs: [sonarScan]
-    runs-on: ubuntu-latest
-    steps:
-    - name: ServiceNow DevOps Register Package
-    # You may pin to the exact commit or the version.           
-      uses: ServiceNow/servicenow-devops-register-package@v3.1.0
-      with:
-          # Devops Integration Token
-          # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-          # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          # ServiceNow Instance URL
-          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+  # registerPackage:
+  #   name: 'Register Package'
+  #   needs: [sonarScan]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: ServiceNow DevOps Register Package
+  #   # You may pin to the exact commit or the version.           
+  #     uses: ServiceNow/servicenow-devops-register-package@v3.1.0
+  #     with:
+  #         # Devops Integration Token
+  #         # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+  #         # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+  #         devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+  #         # ServiceNow Instance URL
+  #         instance-url: ${{ secrets.SN_INSTANCE_URL }}
           
-          # Orchestration Tool Id of the tool created in ServiceNow
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-          # Github Context
-          context-github: ${{ toJSON(github) }}
-          # List of Artifacts in JSON format
-          artifacts: '[
-              {
-                  "name": "app-devops-cicd.jar",
-                  "version": "1.${{ github.run_number }}",
-                  "semanticVersion": "1.${{ github.run_number }}.0",
-                  "repositoryName": "${{ github.repository }}"
-              }
-           ]'
-          # Name of the Package that contains list of artifacts
-          package-name: 'app-devops-change-velocity-cicd.war'
-          # Display Name of Job
-          job-name: 'Register Package'
+  #         # Orchestration Tool Id of the tool created in ServiceNow
+  #         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+  #         # Github Context
+  #         context-github: ${{ toJSON(github) }}
+  #         # List of Artifacts in JSON format
+  #         artifacts: '[
+  #             {
+  #                 "name": "app-devops-cicd.jar",
+  #                 "version": "1.${{ github.run_number }}",
+  #                 "semanticVersion": "1.${{ github.run_number }}.0",
+  #                 "repositoryName": "${{ github.repository }}"
+  #             }
+  #          ]'
+  #         # Name of the Package that contains list of artifacts
+  #         package-name: 'app-devops-change-velocity-cicd.war'
+  #         # Display Name of Job
+  #         job-name: 'Register Package'
 
   change:
     name: Change Request
     if: always()
-    needs: registerPackage
+    # needs: registerPackage
     runs-on: ubuntu-latest
     steps:     
       - name: ServiceNow DevOps Change Attributes
@@ -276,66 +276,66 @@ jobs:
   #     - name: Run deployment scripts
   #       run: echo Completed Deployment. 
 
-  getchange:
-    # jobs that  must complete successfully before this job will run
-    needs: change
-    # type of machine to run the job on
-    runs-on: ubuntu-latest
-    if: always()
-    name: 'ServiceNow DevOps Get Change'
-    outputs:
-      change-request-number: ${{ steps.get_change.outputs.change-request-number }}
-    steps:
-      - name: ServiceNow DevOps Get Change
-        # You may pin to the exact commit or the version.
-        # uses: ServiceNow/servicenow-devops-get-change@0f8b1914adeaec764a4286bdd9cba73ed1c6097f
-        uses: ServiceNow/servicenow-devops-get-change@v4.1.0
-        id: get_change
-        with:
-          # ServiceNow Instance URL
-          instance-url: ${{ secrets.SN_INSTANCE_URL }}
-          # Devops Integration Token
-          # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-          devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-          # Orchestration Tool Id
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-          # Github Context
-          context-github: ${{ toJSON(github) }}
-          # The inputs to identify change at Servicenow and GET it.
-          change-details: '{"build_number":"","pipeline_name":"","stage_name":"Change Request"}'
+  # getchange:
+  #   # jobs that  must complete successfully before this job will run
+  #   needs: change
+  #   # type of machine to run the job on
+  #   runs-on: ubuntu-latest
+  #   if: always()
+  #   name: 'ServiceNow DevOps Get Change'
+  #   outputs:
+  #     change-request-number: ${{ steps.get_change.outputs.change-request-number }}
+  #   steps:
+  #     - name: ServiceNow DevOps Get Change
+  #       # You may pin to the exact commit or the version.
+  #       # uses: ServiceNow/servicenow-devops-get-change@0f8b1914adeaec764a4286bdd9cba73ed1c6097f
+  #       uses: ServiceNow/servicenow-devops-get-change@v4.1.0
+  #       id: get_change
+  #       with:
+  #         # ServiceNow Instance URL
+  #         instance-url: ${{ secrets.SN_INSTANCE_URL }}
+  #         # Devops Integration Token
+  #         # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+  #         devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+  #         devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+  #         # Orchestration Tool Id
+  #         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+  #         # Github Context
+  #         context-github: ${{ toJSON(github) }}
+  #         # The inputs to identify change at Servicenow and GET it.
+  #         change-details: '{"build_number":"","pipeline_name":"","stage_name":"Change Request"}'
 
-      - name: Output of ServiceNow DevOps Get Change
-        run: echo 'Output of ServiceNow DevOps Get Change is -> change-request-number = ${{ steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
+  #     - name: Output of ServiceNow DevOps Get Change
+  #       run: echo 'Output of ServiceNow DevOps Get Change is -> change-request-number = ${{ steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
 
-  updatechange:
-    # jobs that must complete successfully before this job will run
-    needs: getchange
-    # type of machine to run the job on
-    runs-on: ubuntu-latest
-    name: 'ServiceNow DevOps Update Change'
-    if: always()
-    steps:
-      - name: ServiceNow DevOps Update Change
-        # You may pin to the exact commit or the version.
-        # uses: ServiceNow/servicenow-devops-update-change@66d51cb13684d8287a763bc3f4dc4531c6ab3306
-        uses: ServiceNow/servicenow-devops-update-change@v3.1.0
-        id: update_change
-        with:
-          # ServiceNow Instance URL
-          instance-url: ${{ secrets.SN_INSTANCE_URL }}
-          # ServiceNow Devops security token
-          # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-          devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
-          devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
-          # Orchestration Tool Id of the tool created in ServiceNow
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-          # Github Context
-          context-github: ${{ toJSON(github) }}
-          # Change Request Number to be Updated
-          change-request-number: ${{needs.getchange.outputs.change-request-number}}
-          # The customized inputs to create change with the requested details.
-          change-request-details: '{"state":"3","close_code":"successful_issues","close_notes":"Test results successful"}'
+  # updatechange:
+  #   # jobs that must complete successfully before this job will run
+  #   needs: getchange
+  #   # type of machine to run the job on
+  #   runs-on: ubuntu-latest
+  #   name: 'ServiceNow DevOps Update Change'
+  #   if: always()
+  #   steps:
+  #     - name: ServiceNow DevOps Update Change
+  #       # You may pin to the exact commit or the version.
+  #       # uses: ServiceNow/servicenow-devops-update-change@66d51cb13684d8287a763bc3f4dc4531c6ab3306
+  #       uses: ServiceNow/servicenow-devops-update-change@v3.1.0
+  #       id: update_change
+  #       with:
+  #         # ServiceNow Instance URL
+  #         instance-url: ${{ secrets.SN_INSTANCE_URL }}
+  #         # ServiceNow Devops security token
+  #         # devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+  #         devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
+  #         devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
+  #         # Orchestration Tool Id of the tool created in ServiceNow
+  #         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+  #         # Github Context
+  #         context-github: ${{ toJSON(github) }}
+  #         # Change Request Number to be Updated
+  #         change-request-number: ${{needs.getchange.outputs.change-request-number}}
+  #         # The customized inputs to create change with the requested details.
+  #         change-request-details: '{"state":"3","close_code":"successful_issues","close_notes":"Test results successful"}'
           
       # - name: Outcome of  ServiceNow DevOps Update Change
       #   run: echo 'Outcome of ServiceNow DevOps Update Change is -> ${{ steps.update_change.outputs.status }}'  >> $GITHUB_OUTPUT    
