@@ -44,7 +44,7 @@ jobs:
     - name: Run Tests with Maven
       run: mvn -B test --file pom.xml
     - name: ServiceNow DevOps Unit Test Results            
-      uses: ServiceNow/servicenow-devops-test-report@v3.1.0
+      uses: ServiceNow/servicenow-devops-test-report@v4.1.0
       with:
           # Devops Integration Token
           devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
