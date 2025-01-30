@@ -75,7 +75,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: ServiceNow DevOps Unit Test Results
-        uses: ServiceNow/servicenow-devops-test-report@dev
+        uses: ServiceNow/servicenow-devops-test-report@main
         with:
           # Devops Integration Token
           # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
@@ -128,7 +128,7 @@ jobs:
     steps:
     - name: ServiceNow DevOps Register Artifact
     # You may pin to the exact commit or the version.          
-      uses: ServiceNow/servicenow-devops-register-artifact@dev
+      uses: ServiceNow/servicenow-devops-register-artifact@main
       with:
           # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
           # devops-integration-user-password: '${{ secrets.SN_DEVOPS_PASSWORD }}'
@@ -163,7 +163,7 @@ jobs:
   
    - name: ServiceNow DevOps Sonar Scan Results
    # You may pin to the exact commit or the version.     
-     uses: ServiceNow/servicenow-devops-sonar@dev
+     uses: ServiceNow/servicenow-devops-sonar@main
      with:
          # ServiceNow Instance URL
          instance-url: ${{ secrets.SN_INSTANCE_URL }}
@@ -218,7 +218,7 @@ jobs:
     steps:
     - name: ServiceNow DevOps Register Package
     # You may pin to the exact commit or the version.           
-      uses: ServiceNow/servicenow-devops-register-package@dev
+      uses: ServiceNow/servicenow-devops-register-package@main
       with:
           # Devops Integration Token
           # devops-integration-user-name: '${{ secrets.SN_DEVOPS_USER }}'
@@ -252,7 +252,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:     
       - name: ServiceNow DevOps Change Attributes
-        uses: ServiceNow/servicenow-devops-change@dev
+        uses: ServiceNow/servicenow-devops-change@main
         with:
           # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
           # devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
@@ -290,7 +290,7 @@ jobs:
       - name: ServiceNow DevOps Get Change
         # You may pin to the exact commit or the version.
         # uses: ServiceNow/servicenow-devops-get-change@0f8b1914adeaec764a4286bdd9cba73ed1c6097f
-        uses: ServiceNow/servicenow-devops-get-change@dev
+        uses: ServiceNow/servicenow-devops-get-change@main
         id: get_change
         with:
           # ServiceNow Instance URL
@@ -320,7 +320,7 @@ jobs:
       - name: ServiceNow DevOps Update Change
         # You may pin to the exact commit or the version.
         # uses: ServiceNow/servicenow-devops-update-change@66d51cb13684d8287a763bc3f4dc4531c6ab3306
-        uses: ServiceNow/servicenow-devops-update-change@dev
+        uses: ServiceNow/servicenow-devops-update-change@main
         id: update_change
         with:
           # ServiceNow Instance URL
