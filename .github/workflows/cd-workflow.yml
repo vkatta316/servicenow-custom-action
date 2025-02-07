@@ -16,6 +16,7 @@ jobs:
     # You may pin to the exact commit or the version.
       #1 commit
       # commit 2
+      #commit 3
       uses: ServiceNow/servicenow-devops-register-package@v3.1.0
       with:
           # Devops Integration Token
