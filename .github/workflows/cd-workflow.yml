@@ -21,6 +21,7 @@ jobs:
           # ServiceNow Instance URL
           #Test
           #test1
+        #test3
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           # Orchestration Tool Id of the tool created in ServiceNow
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
