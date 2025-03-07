@@ -190,7 +190,7 @@ jobs:
          # Sonar Project Key
          sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
 
- job3:
+job3:
    name: Job 3 (Always Skipped)
    runs-on: ubuntu-latest
    if: false  # This ensures the job is always skipped
@@ -229,7 +229,7 @@ jobs:
   #           buildVersion: Veracode Scan name /build version and is optional. This attribute is applicable only for Veracode.
   #           securityToolId: Security tool onboarded in ServiceNow (sys_id of the onboarded security tool) and is optional.
 
-  registerPackage:
+registerPackage:
     name: 'Register Package'
     needs: [job3]
     runs-on: ubuntu-latest
@@ -263,7 +263,7 @@ jobs:
           # Display Name of Job
           job-name: 'Register Package'
 
-  change:
+change:
     name: Change Request
     if: always()
     needs: sonarScan
@@ -286,7 +286,7 @@ jobs:
           # deployment-gate: '{"environment":"prod","jobName":"Deploy"}'
           # chg_model":"007c4001c343101035ae3f52c1d3aeb2"
         
-  deploy:
+deploy:
     name: 'Deploy'
     needs: change
     runs-on: ubuntu-latest
@@ -295,7 +295,7 @@ jobs:
       - name: Run deployment scripts
         run: echo Completed Deployment. 
 
-  getchange:
+getchange:
     # jobs that  must complete successfully before this job will run
     needs: change
     # type of machine to run the job on
@@ -327,7 +327,7 @@ jobs:
       - name: Output of ServiceNow DevOps Get Change
         run: echo 'Output of ServiceNow DevOps Get Change is -> change-request-number = ${{ steps.get_change.outputs.change-request-number }}' >> $GITHUB_OUTPUT
 
-  updatechange:
+updatechange:
     # jobs that must complete successfully before this job will run
     needs: getchange
     # type of machine to run the job on
