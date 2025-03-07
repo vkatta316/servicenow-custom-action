@@ -191,14 +191,14 @@ jobs:
          # Sonar Project Key
          sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
 
-    job3:
-    name: Job 3 (Always Skipped)
-    runs-on: ubuntu-latest
-    if: false  # This ensures the job is always skipped
-    needs: build
-    steps:
-      - name: Step 1 in Job 2
-        run: echo "This should not run"
+ job3:
+   name: Job 3 (Always Skipped)
+   runs-on: ubuntu-latest
+   if: false  # This ensures the job is always skipped
+   needs: build
+   steps:
+     - name: Step 1 in Job 2
+       run: echo "This should not run"
         
 
   # ServiceNowSecurityScanResults:
