@@ -161,7 +161,7 @@ jobs:
               }
            ]'
 
-  sonarScan:
+sonarScan:
    name: 'Sonar Scan'
    # if: ${{ github.ref != 'refs/heads/main' }}
    needs: registerArtifact
