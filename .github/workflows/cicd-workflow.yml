@@ -155,7 +155,7 @@ jobs:
   sonarScan:
    name: 'Sonar Scan'
    if: ${{ github.ref != 'refs/heads/main' }}
-   needs: build
+   needs: registerArtifact
    runs-on: ubuntu-latest
    steps:
    - name: Checkout
@@ -213,6 +213,7 @@ jobs:
 
   registerPackage:
     name: 'Register Package'
+    if: always()
     needs: [sonarScan]
     runs-on: ubuntu-latest
     steps:
