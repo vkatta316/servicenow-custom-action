@@ -240,15 +240,15 @@ jobs:
                   "repositoryName": "${{ github.repository }}"
               }
            ]'
-          # # Name of the Package that contains list of artifacts
-          # package-name: 'app-devops-change-velocity-cicd.war'
-          # # Display Name of Job
-          # job-name: 'Register Package'
+          # Name of the Package that contains list of artifacts
+          package-name: 'app-devops-change-velocity-cicd.war'
+          # Display Name of Job
+          job-name: 'Register Package'
 
   change:
     name: Change Request
     if: always()
-    needs: sonarScan
+    needs: registerPackage
     runs-on: ubuntu-latest
     steps:     
       - name: ServiceNow DevOps Change Attributes
