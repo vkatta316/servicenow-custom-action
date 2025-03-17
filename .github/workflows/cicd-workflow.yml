@@ -9,7 +9,7 @@ on:
     branches:
       - master
       - main
-      - test03
+      - scratch/pullRequestChange
 # on: 
 #   schedule:
 #     - cron: '*/2 * * * *' 
