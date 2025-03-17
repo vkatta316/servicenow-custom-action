@@ -10,7 +10,7 @@ on:
       - master
       - main
       - test03
-# on: 
+# on:  
 #   schedule:
 #     - cron: '*/2 * * * *' 
 #RC1
