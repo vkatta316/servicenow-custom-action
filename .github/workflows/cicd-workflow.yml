@@ -43,7 +43,7 @@ jobs:
   #         export JFROG_CLI_HOME="/home/runner/work/jenkins-test/jenkins-test"
   #         jf rt u "README.md" "tf-trial/workspaces/jfrog-ws1/"
   #         # Collect environment variables for the build
-  #         jf rt bce
+  #         jf rt bce 
   #         # Publish build info
   #         jf rt bp
 
