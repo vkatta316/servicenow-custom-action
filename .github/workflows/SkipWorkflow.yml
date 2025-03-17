@@ -33,7 +33,7 @@ jobs:
 
       # Step 4: Build the project
       - name: Build Project
-        run: npm run build
+        run: npm run build 
 
       # Step 5: Run tests
       - name: Run Tests
