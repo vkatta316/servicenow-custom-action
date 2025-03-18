@@ -217,7 +217,7 @@ jobs:
 
   getchange:
     # jobs that  must complete successfully before this job will run
-    needs: deploy
+    needs: change
     # type of machine to run the job on
     runs-on: ubuntu-latest
     name: 'ServiceNow DevOps Get Change'
