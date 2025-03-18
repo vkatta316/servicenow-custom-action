@@ -63,7 +63,7 @@ jobs:
 
   registerArtifact:
     name: 'RegisterArtifact'
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Artifact
@@ -188,7 +188,7 @@ jobs:
 
   change:
     name: Change Request
-    needs: build
+    needs: registerPackage
     runs-on: ubuntu-latest
     steps:     
       - name: ServiceNow DevOps Change Automation
