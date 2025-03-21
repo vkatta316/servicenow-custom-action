@@ -88,7 +88,7 @@ jobs:
           # Job Name
           job-name: 'Test' 
           # Should be same name as declared in 'name' clause of the current Stage
-          test-summary-name: 'Mona Test Summary'
+          # test-summary-name: 'Mona Test Summary'
           # Github Context
           context-github: ${{ toJSON(github) }}
           # JUnit xml report file name with path
