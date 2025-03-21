@@ -75,7 +75,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: ServiceNow DevOps Unit Test Results
-        uses: ServiceNow/servicenow-devops-test-report@v5.1.0
+        uses: ServiceNow/servicenow-devops-test-report@scratch/STRY59283893
         with:
           # Devops Integration Token
           # devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
@@ -86,7 +86,10 @@ jobs:
           # Orchestration Tool Id
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           # Job Name
-          job-name: 'Test' # Should be same name as declared in 'name' clause of the current Stage
+          job-name: 'Test' 
+          # Should be same name as declared in 'name' clause of the current Stage
+          test-summary-name:
+          description: 'Mona Test Summary'
           # Github Context
           context-github: ${{ toJSON(github) }}
           # JUnit xml report file name with path
