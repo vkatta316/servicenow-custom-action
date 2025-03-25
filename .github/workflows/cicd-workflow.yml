@@ -9,7 +9,6 @@ on:
     branches:
       - master
       - main
-      - test03
 # on: 
 #   schedule:
 #     - cron: '*/2 * * * *' 
