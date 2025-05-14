@@ -102,7 +102,7 @@ jobs:
   #         job-name: 'Register Artifact'
   #         # Github Context
   #         context-github: ${{ toJSON(github) }}
-  #         # List of Artifacts to be registered
+  #         # List of Artifacts to be registered on
   #         artifacts: '[
   #             {
   #                 "name": "app-devops-ci.jar",
