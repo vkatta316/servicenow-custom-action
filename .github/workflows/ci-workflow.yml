@@ -165,7 +165,7 @@ jobs:
   #   # type of machine to run the job on
   #   runs-on: ubuntu-latest
   #   name: 'ServiceNow DevOps Change'
-  #   steps:
+  #   steps :
   #     - name: Sleep for 30 seconds
   #       run: sleep 10s
   #       shell: bash
