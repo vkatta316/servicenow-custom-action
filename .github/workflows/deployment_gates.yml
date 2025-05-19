@@ -1,12 +1,12 @@
 name: Deployment Gates workflow
 on:
   workflow_dispatch: 
-  pull_request:
-    types: [opened, reopened, merged, closed, synchronize]
-    branches:
-      - master
-      - main
-      - test03
+  # pull_request:
+  #   types: [opened, reopened, merged, closed, synchronize]
+  #   branches:
+  #     - master
+  #     - main
+  #     - test03
 
 # on:
 #   schedule:
