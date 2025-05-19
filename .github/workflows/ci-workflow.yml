@@ -159,27 +159,27 @@ jobs:
   #         security-result-attributes: '{"scanner": "Veracode", "applicationName": "10kflaws-72"}'
 
 
-  # change:
-  #   # jobs that must complete successfully before this job will run
-  #   needs: test
-  #   # type of machine to run the job on
-  #   runs-on: ubuntu-latest
-  #   name: 'ServiceNow DevOps Change'
-  #   steps:
-  #     - name: Sleep for 30 seconds
-  #       run: sleep 10s
-  #       shell: bash
-  #     - name: ServiceNow Change
-  #       uses: ServiceNow/servicenow-devops-change@dev
-  #       with:
-  #         # Devops Integration Token
-  #         devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
-  #         # ServiceNow Instance URL
-  #         instance-url: ${{ secrets.SN_INSTANCE_URL }}
-  #         # Orchestration Tool Id
-  #         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-  #         # GitHub Context
-  #         context-github: ${{ toJSON(github) }}
-  #         # Display Name of the Job
-  #         job-name: 'ServiceNow DevOps Change'
-  #         change-request: '{"attributes":{"requested_by":{"name": "DevOps System"},"assignment_group":{"name": "Change management"},"priority": "2","comments": "This is a sample pipeline script to be added in your change step","work_notes": "Update this to work_notes","start_date": "","end_date": ""}}'        
+  change:
+    # jobs that must complete successfully before this job will run
+    needs: test
+    # type of machine to run the job on
+    runs-on: ubuntu-latest
+    name: 'ServiceNow DevOps Change'
+    steps:
+      - name: Sleep for 30 seconds
+        run: sleep 10s
+        shell: bash
+      - name: ServiceNow Change
+        uses: ServiceNow/servicenow-devops-change@dev
+        with:
+          # Devops Integration Token
+          devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN }}
+          # ServiceNow Instance URL
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          # Orchestration Tool Id
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          # GitHub Context
+          context-github: ${{ toJSON(github) }}
+          # Display Name of the Job
+          job-name: 'ServiceNow DevOps Change'
+          change-request: '{"attributes":{"requested_by":{"name": "DevOps System"},"assignment_group":{"name": "Change management"},"priority": "2","comments": "This is a sample pipeline script to be added in your change step","work_notes": "Update this to work_notes","start_date": "","end_date": ""}}'        
